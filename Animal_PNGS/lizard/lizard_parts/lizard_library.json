@@ -1,0 +1,347 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "lizard": [
+   "lizard",
+   "gecko",
+   "skink",
+   "lizardy"
+  ]
+ },
+ "parts": {
+  "lizard_torso": {
+   "file": "lizard/parts/lizard_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 3,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       250,
+       545
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       480,
+       520
+      ],
+      "scale": 0.8,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       505,
+       515
+      ],
+      "scale": 0.8,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       530,
+       525
+      ],
+      "scale": 0.8,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       455,
+       525
+      ],
+      "scale": 0.8,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       850,
+       625
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       370,
+       640
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       770,
+       640
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       265,
+       640
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       690,
+       655
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "lizard_head": {
+   "file": "lizard/parts/lizard_head.png",
+   "slot": "head",
+   "plug": [
+    250,
+    545
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       124,
+       384
+      ]
+     },
+     {
+      "at": [
+       164,
+       374
+      ]
+     },
+     {
+      "at": [
+       139,
+       354
+      ]
+     },
+     {
+      "at": [
+       119,
+       424
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       140,
+       348
+      ],
+      "z": 6,
+      "pose": {
+       "solo": {
+        "scale": 0.7
+       }
+      }
+     },
+     {
+      "at": [
+       95,
+       355
+      ],
+      "z": 6,
+      "angle": -25
+     },
+     {
+      "at": [
+       190,
+       352
+      ],
+      "z": 6,
+      "angle": 25
+     },
+     {
+      "at": [
+       55,
+       372
+      ],
+      "z": 6,
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       50,
+       405
+      ]
+     }
+    ]
+   }
+  },
+  "lizard_eye": {
+   "file": "lizard/parts/lizard_eye.png",
+   "slot": "eyes",
+   "plug": [
+    124,
+    384
+   ],
+   "z": 7,
+   "tags": [
+    "lizard",
+    "reptile",
+    "normal"
+   ]
+  },
+  "lizard_tail": {
+   "file": "lizard/parts/lizard_tail.png",
+   "slot": "tail",
+   "plug": [
+    850,
+    625
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "normal"
+   ]
+  },
+  "lizard_leg_front_near": {
+   "file": "lizard/parts/lizard_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    370,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "lizard_leg_front_far": {
+   "file": "lizard/parts/lizard_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    265,
+    640
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "lizard_leg_rear_near": {
+   "file": "lizard/parts/lizard_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    770,
+    640
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "rear",
+    "near",
+    "normal"
+   ]
+  }
+ }
+}

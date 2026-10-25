@@ -1,0 +1,367 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "dog": [
+   "dog",
+   "canine",
+   "hound",
+   "shepherd",
+   "puppy"
+  ]
+ },
+ "parts": {
+  "dog_torso": {
+   "file": "dog/parts/dog_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       330,
+       480
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       600,
+       470
+      ],
+      "scale": 1.4,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       625,
+       462
+      ],
+      "scale": 1.4,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       650,
+       480
+      ],
+      "scale": 1.4,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       575,
+       475
+      ],
+      "scale": 1.4,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1050,
+       650
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       330,
+       705
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       1000,
+       760
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       460,
+       725
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       850,
+       765
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "dog_head": {
+   "file": "dog/parts/dog_head.png",
+   "slot": "head",
+   "plug": [
+    330,
+    480
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       158,
+       265
+      ]
+     },
+     {
+      "at": [
+       213,
+       240
+      ]
+     },
+     {
+      "at": [
+       183,
+       220
+      ]
+     },
+     {
+      "at": [
+       168,
+       325
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       200,
+       225
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       150,
+       240
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       250,
+       215
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       110,
+       265
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       60,
+       330
+      ]
+     }
+    ]
+   }
+  },
+  "dog_eye": {
+   "file": "dog/parts/dog_eye.png",
+   "slot": "eyes",
+   "plug": [
+    158,
+    265
+   ],
+   "z": 7,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "normal"
+   ]
+  },
+  "dog_tail": {
+   "file": "dog/parts/dog_tail.png",
+   "slot": "tail",
+   "plug": [
+    1050,
+    650
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "normal"
+   ]
+  },
+  "dog_leg_front_near": {
+   "file": "dog/parts/dog_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    330,
+    705
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "dog_leg_front_far": {
+   "file": "dog/parts/dog_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    460,
+    725
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "dog_leg_rear_near": {
+   "file": "dog/parts/dog_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    1000,
+    760
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "dog_leg_rear_far": {
+   "file": "dog/parts/dog_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    850,
+    765
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "rear",
+    "far",
+    "normal"
+   ]
+  }
+ }
+}

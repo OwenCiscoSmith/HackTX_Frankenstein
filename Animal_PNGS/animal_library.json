@@ -45,7 +45,7 @@
     "head": [
      {
       "at": [
-       396,
+       470,
        430
       ]
      }
@@ -698,6 +698,2688 @@
     "bird",
     "peacock",
     "right"
+   ]
+  },
+  "monkey_torso": {
+   "file": "monkey/monkey_parts/monkey_torso.png",
+   "slot": "body",
+   "plug": [
+    1254,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "faces_right",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       269,
+       400
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       434,
+       335
+      ],
+      "scale": 1.4,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       409,
+       325
+      ],
+      "scale": 1.4,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       384,
+       345
+      ],
+      "scale": 1.4,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       459,
+       340
+      ],
+      "scale": 1.4,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       854,
+       385
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       304,
+       640
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       784,
+       570
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       169,
+       640
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       574,
+       630
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "monkey_head": {
+   "file": "monkey/monkey_parts/monkey_head.png",
+   "slot": "head",
+   "plug": [
+    269,
+    400
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "faces_right",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       122,
+       296
+      ]
+     },
+     {
+      "at": [
+       192,
+       256
+      ]
+     },
+     {
+      "at": [
+       157,
+       221
+      ]
+     },
+     {
+      "at": [
+       132,
+       376
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       204,
+       185
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       254,
+       205
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       154,
+       185
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       294,
+       240
+      ],
+      "angle": 45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       104,
+       415
+      ]
+     }
+    ]
+   }
+  },
+  "monkey_eye": {
+   "file": "monkey/monkey_parts/monkey_eye.png",
+   "slot": "eyes",
+   "plug": [
+    122,
+    296
+   ],
+   "z": 7,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "normal"
+   ]
+  },
+  "monkey_tail": {
+   "file": "monkey/monkey_parts/monkey_tail.png",
+   "slot": "tail",
+   "plug": [
+    854,
+    385
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "normal"
+   ]
+  },
+  "monkey_leg_front_near": {
+   "file": "monkey/monkey_parts/monkey_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    304,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "monkey_leg_front_far": {
+   "file": "monkey/monkey_parts/monkey_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    169,
+    640
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "monkey_leg_rear_near": {
+   "file": "monkey/monkey_parts/monkey_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    784,
+    570
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "monkey_leg_rear_far": {
+   "file": "monkey/monkey_parts/monkey_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    574,
+    630
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "rear",
+    "far",
+    "normal"
+   ]
+  },
+  "bear_torso": {
+   "file": "bear/parts/bear_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "bear",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0,
+    "tail": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       445,
+       430
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       620,
+       265
+      ],
+      "scale": 1.6,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       645,
+       255
+      ],
+      "scale": 1.6,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       670,
+       285
+      ],
+      "scale": 1.6,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       595,
+       270
+      ],
+      "scale": 1.6,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1190,
+       500
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       600,
+       640
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       1100,
+       740
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       390,
+       640
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       880,
+       745
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "bear_head": {
+   "file": "bear/parts/bear_head.png",
+   "slot": "head",
+   "plug": [
+    445,
+    430
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "bear",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       181,
+       357
+      ]
+     },
+     {
+      "at": [
+       251,
+       317
+      ]
+     },
+     {
+      "at": [
+       216,
+       282
+      ]
+     },
+     {
+      "at": [
+       191,
+       437
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       275,
+       225
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       215,
+       245
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       335,
+       215
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       170,
+       290
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       90,
+       470
+      ]
+     }
+    ]
+   }
+  },
+  "bear_eye": {
+   "file": "bear/parts/bear_eye.png",
+   "slot": "eyes",
+   "plug": [
+    181,
+    357
+   ],
+   "z": 7,
+   "tags": [
+    "bear",
+    "mammal",
+    "normal"
+   ]
+  },
+  "bear_leg_front_near": {
+   "file": "bear/parts/bear_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    600,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "bear",
+    "mammal",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "bear_leg_front_far": {
+   "file": "bear/parts/bear_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    390,
+    640
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "bear",
+    "mammal",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "bear_leg_rear_near": {
+   "file": "bear/parts/bear_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    1100,
+    740
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "bear",
+    "mammal",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "bear_leg_rear_far": {
+   "file": "bear/parts/bear_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    880,
+    745
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "bear",
+    "mammal",
+    "rear",
+    "far",
+    "normal"
+   ]
+  },
+  "dog_torso": {
+   "file": "dog/parts/dog_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       330,
+       500
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       600,
+       470
+      ],
+      "scale": 1.4,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       625,
+       462
+      ],
+      "scale": 1.4,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       650,
+       480
+      ],
+      "scale": 1.4,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       575,
+       475
+      ],
+      "scale": 1.4,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1050,
+       690
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       330,
+       705
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       1000,
+       760
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       460,
+       725
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       850,
+       765
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "dog_head": {
+   "file": "dog/parts/dog_head.png",
+   "slot": "head",
+   "plug": [
+    330,
+    480
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       158,
+       265
+      ]
+     },
+     {
+      "at": [
+       213,
+       240
+      ]
+     },
+     {
+      "at": [
+       183,
+       220
+      ]
+     },
+     {
+      "at": [
+       168,
+       325
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       200,
+       225
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       150,
+       240
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       250,
+       215
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       110,
+       265
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       60,
+       330
+      ]
+     }
+    ]
+   }
+  },
+  "dog_eye": {
+   "file": "dog/parts/dog_eye.png",
+   "slot": "eyes",
+   "plug": [
+    158,
+    265
+   ],
+   "z": 7,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "normal"
+   ]
+  },
+  "dog_tail": {
+   "file": "dog/parts/dog_tail.png",
+   "slot": "tail",
+   "plug": [
+    1050,
+    650
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "normal"
+   ]
+  },
+  "dog_leg_front_near": {
+   "file": "dog/parts/dog_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    330,
+    705
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "dog_leg_front_far": {
+   "file": "dog/parts/dog_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    460,
+    725
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "dog_leg_rear_near": {
+   "file": "dog/parts/dog_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    1000,
+    760
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "dog_leg_rear_far": {
+   "file": "dog/parts/dog_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    850,
+    765
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "dog",
+    "canine",
+    "mammal",
+    "rear",
+    "far",
+    "normal"
+   ]
+  },
+  "fish_torso": {
+   "file": "fish/fish_parts/fish_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 2,
+    "wings": 1,
+    "horns": 2,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       400,
+       610
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       465,
+       690
+      ],
+      "pose": {
+       "flying": {
+        "angle": -40
+       }
+      }
+     },
+     {
+      "at": [
+       585,
+       440
+      ],
+      "scale": 1.2,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       610,
+       455
+      ],
+      "scale": 1.2,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       535,
+       452
+      ],
+      "scale": 1.2,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1078,
+       640
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       470,
+       800
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       765,
+       796
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       505,
+       806
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       650,
+       812
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "fish_head": {
+   "file": "fish/fish_parts/fish_head.png",
+   "slot": "head",
+   "plug": [
+    400,
+    610
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       195,
+       572
+      ]
+     },
+     {
+      "at": [
+       265,
+       542
+      ]
+     },
+     {
+      "at": [
+       235,
+       512
+      ]
+     },
+     {
+      "at": [
+       215,
+       642
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       585,
+       436
+      ],
+      "prefer": [
+       "spiny"
+      ]
+     },
+     {
+      "at": [
+       810,
+       492
+      ],
+      "prefer": [
+       "soft"
+      ]
+     },
+     {
+      "at": [
+       250,
+       490
+      ],
+      "angle": -20
+     },
+     {
+      "at": [
+       150,
+       530
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       70,
+       640
+      ]
+     }
+    ]
+   }
+  },
+  "fish_eye": {
+   "file": "fish/fish_parts/fish_eye.png",
+   "slot": "eyes",
+   "plug": [
+    195,
+    572
+   ],
+   "z": 7,
+   "tags": [
+    "fish",
+    "aquatic",
+    "normal"
+   ]
+  },
+  "fish_tail": {
+   "file": "fish/fish_parts/fish_tail.png",
+   "slot": "tail",
+   "plug": [
+    1078,
+    640
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "fin",
+    "normal"
+   ]
+  },
+  "fish_horn_spiny": {
+   "file": "fish/fish_parts/fish_horn_spiny.png",
+   "slot": "horns",
+   "plug": [
+    585,
+    436
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "fin",
+    "spiny",
+    "normal"
+   ]
+  },
+  "fish_horn_soft": {
+   "file": "fish/fish_parts/fish_horn_soft.png",
+   "slot": "horns",
+   "plug": [
+    810,
+    492
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "fin",
+    "soft",
+    "normal"
+   ]
+  },
+  "fish_wing": {
+   "file": "fish/fish_parts/fish_wing.png",
+   "slot": "wings",
+   "plug": [
+    465,
+    690
+   ],
+   "z": 3,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "fin",
+    "normal"
+   ]
+  },
+  "fish_leg_front_near": {
+   "file": "fish/fish_parts/fish_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    470,
+    800
+   ],
+   "z": 1.2,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "fin",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "fish_leg_rear_near": {
+   "file": "fish/fish_parts/fish_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    765,
+    796
+   ],
+   "z": 1.3,
+   "recolor": true,
+   "tags": [
+    "fish",
+    "aquatic",
+    "fin",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "alligator_torso": {
+   "file": "alligator/alligator_parts/alligator_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       300,
+       570
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       560,
+       520
+      ],
+      "scale": 0.9,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       585,
+       515
+      ],
+      "scale": 0.9,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       610,
+       525
+      ],
+      "scale": 0.9,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       535,
+       520
+      ],
+      "scale": 0.9,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       860,
+       575
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       440,
+       610
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       770,
+       610
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       345,
+       675
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       700,
+       690
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "alligator_head": {
+   "file": "alligator/alligator_parts/alligator_head.png",
+   "slot": "head",
+   "plug": [
+    300,
+    570
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       197,
+       505
+      ]
+     },
+     {
+      "at": [
+       242,
+       493
+      ]
+     },
+     {
+      "at": [
+       217,
+       487
+      ]
+     },
+     {
+      "at": [
+       207,
+       535
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       235,
+       490
+      ],
+      "pose": {
+       "solo": {
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       185,
+       490
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       275,
+       492
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       120,
+       518
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       60,
+       555
+      ]
+     }
+    ]
+   }
+  },
+  "alligator_eye": {
+   "file": "alligator/alligator_parts/alligator_eye.png",
+   "slot": "eyes",
+   "plug": [
+    197,
+    505
+   ],
+   "z": 7,
+   "tags": [
+    "alligator",
+    "reptile",
+    "normal"
+   ]
+  },
+  "alligator_tail": {
+   "file": "alligator/alligator_parts/alligator_tail.png",
+   "slot": "tail",
+   "plug": [
+    860,
+    575
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "normal"
+   ]
+  },
+  "alligator_leg_front_near": {
+   "file": "alligator/alligator_parts/alligator_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    440,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "alligator_leg_front_far": {
+   "file": "alligator/alligator_parts/alligator_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    345,
+    705
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "alligator_leg_rear_near": {
+   "file": "alligator/alligator_parts/alligator_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    770,
+    640
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "alligator_leg_rear_far": {
+   "file": "alligator/alligator_parts/alligator_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    700,
+    720
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "rear",
+    "far",
+    "normal"
+   ]
+  },
+  "lion_torso": {
+   "file": "lion/lion_parts/lion_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       500,
+       620
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       700,
+       480
+      ],
+      "scale": 1.2,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       725,
+       475
+      ],
+      "scale": 1.2,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       750,
+       490
+      ],
+      "scale": 1.2,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       675,
+       485
+      ],
+      "scale": 1.2,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       960,
+       545
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       370,
+       850
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       930,
+       700
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       240,
+       850
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       770,
+       765
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "lion_head": {
+   "file": "lion/lion_parts/lion_head.png",
+   "slot": "head",
+   "plug": [
+    500,
+    620
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       123,
+       360
+      ]
+     },
+     {
+      "at": [
+       173,
+       325
+      ]
+     },
+     {
+      "at": [
+       148,
+       300
+      ]
+     },
+     {
+      "at": [
+       133,
+       420
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       200,
+       225
+      ],
+      "z": 6,
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       145,
+       235
+      ],
+      "z": 6,
+      "angle": -25
+     },
+     {
+      "at": [
+       260,
+       225
+      ],
+      "z": 6,
+      "angle": 25
+     },
+     {
+      "at": [
+       85,
+       280
+      ],
+      "z": 6,
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       40,
+       470
+      ]
+     }
+    ]
+   }
+  },
+  "lion_eye": {
+   "file": "lion/lion_parts/lion_eye.png",
+   "slot": "eyes",
+   "plug": [
+    123,
+    360
+   ],
+   "z": 7,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "normal"
+   ]
+  },
+  "lion_tail": {
+   "file": "lion/lion_parts/lion_tail.png",
+   "slot": "tail",
+   "plug": [
+    960,
+    545
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "normal"
+   ]
+  },
+  "lion_leg_front_near": {
+   "file": "lion/lion_parts/lion_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    370,
+    850
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "lion_leg_front_far": {
+   "file": "lion/lion_parts/lion_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    240,
+    850
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "lion_leg_rear_near": {
+   "file": "lion/lion_parts/lion_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    930,
+    700
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "lion_leg_rear_far": {
+   "file": "lion/lion_parts/lion_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    770,
+    765
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "rear",
+    "far",
+    "normal"
+   ]
+  },
+  "lizard_torso": {
+   "file": "lizard/lizard_parts/lizard_eye.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 3,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       300,
+       535
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       480,
+       520
+      ],
+      "scale": 0.8,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       505,
+       515
+      ],
+      "scale": 0.8,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       530,
+       525
+      ],
+      "scale": 0.8,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       455,
+       525
+      ],
+      "scale": 0.8,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       850,
+       625
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       370,
+       640
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       770,
+       640
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       265,
+       640
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       690,
+       655
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "lizard_head": {
+   "file": "lizard/lizard_parts/lizard_head.png",
+   "slot": "head",
+   "plug": [
+    250,
+    545
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       124,
+       384
+      ]
+     },
+     {
+      "at": [
+       164,
+       374
+      ]
+     },
+     {
+      "at": [
+       139,
+       354
+      ]
+     },
+     {
+      "at": [
+       119,
+       424
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       140,
+       348
+      ],
+      "z": 6,
+      "pose": {
+       "solo": {
+        "scale": 0.7
+       }
+      }
+     },
+     {
+      "at": [
+       95,
+       355
+      ],
+      "z": 6,
+      "angle": -25
+     },
+     {
+      "at": [
+       190,
+       352
+      ],
+      "z": 6,
+      "angle": 25
+     },
+     {
+      "at": [
+       55,
+       372
+      ],
+      "z": 6,
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       50,
+       405
+      ]
+     }
+    ]
+   }
+  },
+  "lizard_eye": {
+   "file": "lizard/parts/lizard_eye.png",
+   "slot": "eyes",
+   "plug": [
+    124,
+    384
+   ],
+   "z": 7,
+   "tags": [
+    "lizard",
+    "reptile",
+    "normal"
+   ]
+  },
+  "lizard_tail": {
+   "file": "lizard/lizard_parts/lizard_tail.png",
+   "slot": "tail",
+   "plug": [
+    850,
+    625
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "normal"
+   ]
+  },
+  "lizard_leg_front_near": {
+   "file": "lizard/lizard_parts/lizard_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    370,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "lizard_leg_front_far": {
+   "file": "lizard/lizard_parts/lizard_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    265,
+    640
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "lizard_leg_rear_near": {
+   "file": "lizard/lizard_parts/lizard_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    770,
+    640
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "lizard",
+    "reptile",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "narwhal_torso": {
+   "file": "narwhal/narwhal_parts/narwhal_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 0,
+    "wings": 2,
+    "horns": 1,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       540,
+       680
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       588,
+       672
+      ],
+      "prefer": [
+       "near"
+      ],
+      "pose": {
+       "flying": {
+        "angle": -30
+       }
+      }
+     },
+     {
+      "at": [
+       548,
+       720
+      ],
+      "prefer": [
+       "far"
+      ],
+      "shade": 0.85,
+      "pose": {
+       "flying": {
+        "angle": -20
+       }
+      }
+     },
+     {
+      "at": [
+       780,
+       520
+      ],
+      "scale": 1.2,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       740,
+       525
+      ],
+      "scale": 1.2,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1115,
+       640
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       700,
+       735
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       900,
+       745
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       660,
+       730
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       860,
+       740
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "narwhal_head": {
+   "file": "narwhal/narwhal_parts/narwhal_head.png",
+   "slot": "head",
+   "plug": [
+    560,
+    640
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       482,
+       590
+      ]
+     },
+     {
+      "at": [
+       522,
+       570
+      ]
+     },
+     {
+      "at": [
+       497,
+       545
+      ]
+     },
+     {
+      "at": [
+       477,
+       630
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       381,
+       592
+      ]
+     },
+     {
+      "at": [
+       470,
+       520
+      ],
+      "z": 6,
+      "angle": -20
+     },
+     {
+      "at": [
+       520,
+       508
+      ],
+      "z": 6,
+      "angle": 20
+     },
+     {
+      "at": [
+       430,
+       540
+      ],
+      "z": 6,
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       400,
+       618
+      ]
+     }
+    ]
+   }
+  },
+  "narwhal_eye": {
+   "file": "narwhal/narwhal_parts/narwhal_eye.png",
+   "slot": "eyes",
+   "plug": [
+    482,
+    590
+   ],
+   "z": 7,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "normal"
+   ]
+  },
+  "narwhal_tail": {
+   "file": "narwhal/narwhal_parts/narwhal_tail.png",
+   "slot": "tail",
+   "plug": [
+    1115,
+    640
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "fin",
+    "normal"
+   ]
+  },
+  "narwhal_horn": {
+   "file": "narwhal/narwhal_parts/narwhal_horn.png",
+   "slot": "horns",
+   "plug": [
+    381,
+    592
+   ],
+   "z": 4,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "tusk",
+    "normal"
+   ]
+  },
+  "narwhal_wing_near": {
+   "file": "narwhal/narwhal_parts/narwhal_wing_near.png",
+   "slot": "wings",
+   "plug": [
+    588,
+    672
+   ],
+   "z": 3,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "fin",
+    "near",
+    "normal"
+   ]
+  },
+  "narwhal_wing_far": {
+   "file": "narwhal/narwhal_parts/narwhal_wing_far.png",
+   "slot": "wings",
+   "plug": [
+    548,
+    720
+   ],
+   "z": 0.9,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "fin",
+    "far",
+    "normal"
    ]
   }
  }

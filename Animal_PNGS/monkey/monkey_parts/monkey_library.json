@@ -1,0 +1,366 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "monkey": [
+   "monkey",
+   "simian",
+   "primate",
+   "ape"
+  ]
+ },
+ "parts": {
+  "monkey_torso": {
+   "file": "monkey/monkey_parts/monkey_torso.png",
+   "slot": "body",
+   "plug": [
+    1254,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "faces_right",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       269,
+       400
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       434,
+       335
+      ],
+      "scale": 1.4,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       409,
+       325
+      ],
+      "scale": 1.4,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       384,
+       345
+      ],
+      "scale": 1.4,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       459,
+       340
+      ],
+      "scale": 1.4,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       854,
+       385
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       304,
+       640
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       784,
+       570
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       169,
+       640
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       574,
+       630
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "monkey_head": {
+   "file": "monkey/monkey_parts/monkey_head.png",
+   "slot": "head",
+   "plug": [
+    269,
+    400
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "faces_right",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       122,
+       296
+      ]
+     },
+     {
+      "at": [
+       192,
+       256
+      ]
+     },
+     {
+      "at": [
+       157,
+       221
+      ]
+     },
+     {
+      "at": [
+       132,
+       376
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       204,
+       185
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       254,
+       205
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       154,
+       185
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       294,
+       240
+      ],
+      "angle": 45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       104,
+       415
+      ]
+     }
+    ]
+   }
+  },
+  "monkey_eye": {
+   "file": "monkey/monkey_parts/monkey_eye.png",
+   "slot": "eyes",
+   "plug": [
+    122,
+    296
+   ],
+   "z": 7,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "normal"
+   ]
+  },
+  "monkey_tail": {
+   "file": "monkey/monkey_parts/monkey_tail.png",
+   "slot": "tail",
+   "plug": [
+    854,
+    385
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "normal"
+   ]
+  },
+  "monkey_leg_front_near": {
+   "file": "monkey/monkey_parts/monkey_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    304,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "monkey_leg_front_far": {
+   "file": "monkey/monkey_parts/monkey_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    169,
+    640
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "monkey_leg_rear_near": {
+   "file": "monkey/monkey_parts/monkey_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    784,
+    570
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "monkey_leg_rear_far": {
+   "file": "monkey/monkey_parts/monkey_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    574,
+    630
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "monkey",
+    "mammal",
+    "primate",
+    "rear",
+    "far",
+    "normal"
+   ]
+  }
+ }
+}

@@ -1,0 +1,370 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "lion": [
+   "lion",
+   "feline",
+   "maned",
+   "big-cat"
+  ]
+ },
+ "parts": {
+  "lion_torso": {
+   "file": "lion/parts/lion_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       500,
+       620
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       700,
+       480
+      ],
+      "scale": 1.2,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       725,
+       475
+      ],
+      "scale": 1.2,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       750,
+       490
+      ],
+      "scale": 1.2,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       675,
+       485
+      ],
+      "scale": 1.2,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       960,
+       545
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       370,
+       850
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       930,
+       700
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       240,
+       850
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       770,
+       765
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "lion_head": {
+   "file": "lion/parts/lion_head.png",
+   "slot": "head",
+   "plug": [
+    500,
+    620
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       123,
+       360
+      ]
+     },
+     {
+      "at": [
+       173,
+       325
+      ]
+     },
+     {
+      "at": [
+       148,
+       300
+      ]
+     },
+     {
+      "at": [
+       133,
+       420
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       200,
+       225
+      ],
+      "z": 6,
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      }
+     },
+     {
+      "at": [
+       145,
+       235
+      ],
+      "z": 6,
+      "angle": -25
+     },
+     {
+      "at": [
+       260,
+       225
+      ],
+      "z": 6,
+      "angle": 25
+     },
+     {
+      "at": [
+       85,
+       280
+      ],
+      "z": 6,
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       40,
+       470
+      ]
+     }
+    ]
+   }
+  },
+  "lion_eye": {
+   "file": "lion/parts/lion_eye.png",
+   "slot": "eyes",
+   "plug": [
+    123,
+    360
+   ],
+   "z": 7,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "normal"
+   ]
+  },
+  "lion_tail": {
+   "file": "lion/parts/lion_tail.png",
+   "slot": "tail",
+   "plug": [
+    960,
+    545
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "normal"
+   ]
+  },
+  "lion_leg_front_near": {
+   "file": "lion/parts/lion_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    370,
+    850
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "lion_leg_front_far": {
+   "file": "lion/parts/lion_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    240,
+    850
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "lion_leg_rear_near": {
+   "file": "lion/parts/lion_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    930,
+    700
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "lion_leg_rear_far": {
+   "file": "lion/parts/lion_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    770,
+    765
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "lion",
+    "feline",
+    "mammal",
+    "rear",
+    "far",
+    "normal"
+   ]
+  }
+ }
+}

@@ -1,0 +1,362 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "alligator": [
+   "alligator",
+   "gator",
+   "crocodile",
+   "croc",
+   "reptile",
+   "reptilian"
+  ]
+ },
+ "parts": {
+  "alligator_torso": {
+   "file": "alligator/alligator_parts/alligator_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       300,
+       570
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       560,
+       520
+      ],
+      "scale": 0.9,
+      "pose": {
+       "flying": {
+        "angle": 45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       585,
+       515
+      ],
+      "scale": 0.9,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       610,
+       525
+      ],
+      "scale": 0.9,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": -22,
+      "pose": {
+       "flying": {
+        "angle": 20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       535,
+       520
+      ],
+      "scale": 0.9,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       860,
+       575
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       440,
+       640
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       770,
+       640
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       345,
+       705
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       700,
+       720
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "alligator_head": {
+   "file": "alligator/alligator_parts/alligator_head.png",
+   "slot": "head",
+   "plug": [
+    300,
+    570
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "scaly",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       197,
+       505
+      ]
+     },
+     {
+      "at": [
+       242,
+       493
+      ]
+     },
+     {
+      "at": [
+       217,
+       487
+      ]
+     },
+     {
+      "at": [
+       207,
+       535
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       235,
+       490
+      ],
+      "pose": {
+       "solo": {
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       185,
+       490
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       275,
+       492
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       120,
+       518
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       60,
+       555
+      ]
+     }
+    ]
+   }
+  },
+  "alligator_eye": {
+   "file": "alligator/alligator_parts/alligator_eye.png",
+   "slot": "eyes",
+   "plug": [
+    197,
+    505
+   ],
+   "z": 7,
+   "tags": [
+    "alligator",
+    "reptile",
+    "normal"
+   ]
+  },
+  "alligator_tail": {
+   "file": "alligator/alligator_parts/alligator_tail.png",
+   "slot": "tail",
+   "plug": [
+    860,
+    575
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "normal"
+   ]
+  },
+  "alligator_leg_front_near": {
+   "file": "alligator/alligator_parts/alligator_leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    440,
+    640
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "alligator_leg_front_far": {
+   "file": "alligator/alligator_parts/alligator_leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    345,
+    705
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "alligator_leg_rear_near": {
+   "file": "alligator/alligator_parts/alligator_leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    770,
+    640
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "alligator_leg_rear_far": {
+   "file": "alligator/alligator_parts/alligator_leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    700,
+    720
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "alligator",
+    "reptile",
+    "rear",
+    "far",
+    "normal"
+   ]
+  }
+ }
+}

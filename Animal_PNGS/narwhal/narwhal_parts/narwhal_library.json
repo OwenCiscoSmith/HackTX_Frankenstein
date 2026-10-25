@@ -1,0 +1,352 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "narwhal": [
+   "narwhal",
+   "whale",
+   "cetacean",
+   "tusked-whale"
+  ]
+ },
+ "parts": {
+  "narwhal_torso": {
+   "file": "narwhal/parts/narwhal_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 0,
+    "wings": 2,
+    "horns": 1,
+    "eyes": 1,
+    "mouth": 0
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       560,
+       640
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       588,
+       672
+      ],
+      "prefer": [
+       "near"
+      ],
+      "pose": {
+       "flying": {
+        "angle": -30
+       }
+      }
+     },
+     {
+      "at": [
+       548,
+       720
+      ],
+      "prefer": [
+       "far"
+      ],
+      "shade": 0.85,
+      "pose": {
+       "flying": {
+        "angle": -20
+       }
+      }
+     },
+     {
+      "at": [
+       780,
+       520
+      ],
+      "scale": 1.2,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": 8,
+      "pose": {
+       "flying": {
+        "angle": 70
+       }
+      }
+     },
+     {
+      "at": [
+       740,
+       525
+      ],
+      "scale": 1.2,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": 35,
+      "pose": {
+       "flying": {
+        "angle": 95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1115,
+       640
+      ],
+      "pose": {
+       "flying": {
+        "angle": 10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       700,
+       735
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       900,
+       745
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       660,
+       730
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       860,
+       740
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "narwhal_head": {
+   "file": "narwhal/parts/narwhal_head.png",
+   "slot": "head",
+   "plug": [
+    560,
+    640
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "faces_left",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       482,
+       590
+      ]
+     },
+     {
+      "at": [
+       522,
+       570
+      ]
+     },
+     {
+      "at": [
+       497,
+       545
+      ]
+     },
+     {
+      "at": [
+       477,
+       630
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       381,
+       592
+      ]
+     },
+     {
+      "at": [
+       470,
+       520
+      ],
+      "z": 6,
+      "angle": -20
+     },
+     {
+      "at": [
+       520,
+       508
+      ],
+      "z": 6,
+      "angle": 20
+     },
+     {
+      "at": [
+       430,
+       540
+      ],
+      "z": 6,
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       400,
+       618
+      ]
+     }
+    ]
+   }
+  },
+  "narwhal_eye": {
+   "file": "narwhal/parts/narwhal_eye.png",
+   "slot": "eyes",
+   "plug": [
+    482,
+    590
+   ],
+   "z": 7,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "normal"
+   ]
+  },
+  "narwhal_tail": {
+   "file": "narwhal/parts/narwhal_tail.png",
+   "slot": "tail",
+   "plug": [
+    1115,
+    640
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "mammal",
+    "fin",
+    "normal"
+   ]
+  },
+  "narwhal_horn": {
+   "file": "narwhal/parts/narwhal_horn.png",
+   "slot": "horns",
+   "plug": [
+    381,
+    592
+   ],
+   "z": 4,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "tusk",
+    "normal"
+   ]
+  },
+  "narwhal_wing_near": {
+   "file": "narwhal/parts/narwhal_wing_near.png",
+   "slot": "wings",
+   "plug": [
+    588,
+    672
+   ],
+   "z": 3,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "fin",
+    "near",
+    "normal"
+   ]
+  },
+  "narwhal_wing_far": {
+   "file": "narwhal/parts/narwhal_wing_far.png",
+   "slot": "wings",
+   "plug": [
+    548,
+    720
+   ],
+   "z": 0.9,
+   "recolor": true,
+   "tags": [
+    "narwhal",
+    "whale",
+    "aquatic",
+    "fin",
+    "far",
+    "normal"
+   ]
+  }
+ }
+}
