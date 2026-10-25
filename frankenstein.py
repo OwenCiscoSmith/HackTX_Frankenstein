@@ -89,17 +89,26 @@ OPTIONAL_CHANCE = 0.5
 SIZE_MULTIPLIER = 4
 
 
-def load_part(name):
-    """Load a part image by name, e.g. "monkey_torso" -> a 1254x1254 RGBA image."""
+def part_path(name):
+    """Resolve the real PNG naming scheme (some catalog 'file' values are stale)."""
     # Part names are prefixed with their animal, which names the folder:
     # Animal_PNGS/<animal>/<animal>_parts/<part name>.png
     animal = name.split("_")[0]
-    return Image.open(ANIMALS_DIR / animal / f"{animal}_parts" / f"{name}.png").convert("RGBA")
+    return ANIMALS_DIR / animal / f"{animal}_parts" / f"{name}.png"
+
+
+def load_part(name):
+    """Load a part image by name, e.g. "monkey_torso" -> an RGBA image."""
+    with Image.open(part_path(name)) as image:
+        return image.convert("RGBA")
 
 
 def bbox_size(img):
     """(width, height) of the visible pixels, ignoring the transparent canvas around them."""
-    x0, y0, x1, y1 = img.getbbox()
+    bbox = img.getbbox()
+    if bbox is None:
+        raise ValueError("A selected part image contains no visible pixels")
+    x0, y0, x1, y1 = bbox
     return x1 - x0, y1 - y0
 
 
@@ -150,12 +159,15 @@ def random_parts(rng):
     return [f"{n}.png" for n in names]
 
 
-def build(filenames):
+def build(filenames, *, leg_socket_indices=None, pose=None, outline=True):
     """Assemble an image from part filenames, e.g. ["monkey_torso.png", "elephant_head.png"].
 
-    Needs exactly one torso. Legs attach to the torso's leg sockets in the order given.
+    Needs exactly one torso. Legs attach in order unless leg_socket_indices is
+    supplied, allowing e.g. two rear legs to use sockets 1 and 3 rather than 0 and 1.
+    Repeated eyes, horns and wings use distinct existing sockets. Pose adjustments
+    are applied only when that pose is present in the socket metadata.
     """
-    parts = json.loads(LIBRARY.read_text())["parts"]
+    parts = json.loads(LIBRARY.read_text(encoding="utf-8"))["parts"]
     layers = []  # (z, image, offset): every placed part, drawn later in z order
     # Accept names with or without ".png"
     chosen = [Path(f).stem for f in filenames]
@@ -167,7 +179,7 @@ def build(filenames):
     by_slot = {}
     for n in chosen:
         by_slot.setdefault(parts[n]["slot"], []).append(n)
-    for slot in ("body", "head", "tail", "eyes", "horns", "wings"):
+    for slot in ("body", "head"):
         if len(by_slot.get(slot, [])) > 1:
             raise ValueError(f"Only one {slot} part allowed, got {by_slot[slot]}")
     if "body" not in by_slot:
@@ -182,14 +194,16 @@ def build(filenames):
         """
         p_off, p_scale, p_name = parent
         socket = parts[p_name]["sockets"][slot][idx]
+        override = socket.get("pose", {}).get(pose, {})
+        scale *= override.get("scale", 1.0)
         sx, sy = socket["at"]
         px, py = parts[name]["plug"]
         img = load_part(name)
         if scale != 1.0:
-            img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
+            img = img.resize((max(1, round(img.width * scale)), max(1, round(img.height * scale))), Image.LANCZOS)
         # Rotate around the plug so the plug stays put. The socket angle is clockwise,
         # while PIL rotates counter-clockwise, hence the minus sign
-        angle = socket.get("angle", 0)
+        angle = socket.get("angle", 0) + override.get("angle", 0)
         if angle:
             img = img.rotate(-angle, resample=Image.BICUBIC, center=(px * scale, py * scale))
         # Top-left corner such that the part's plug lands exactly on the parent's socket
@@ -213,6 +227,14 @@ def build(filenames):
     chosen.append(torso_name)  # chosen is rebuilt in attach order for the printed list
     torso = ((0, 0), 1.0, torso_name)
 
+    def require_sockets(parent_name, slot, count):
+        capacity = len(parts[parent_name].get("sockets", {}).get(slot, []))
+        if count > capacity:
+            raise ValueError(f"{parent_name} only has {capacity} {slot} sockets, got {count} parts")
+
+    for slot in ("head", "tail", "wings", "legs"):
+        require_sockets(torso_name, slot, len(by_slot.get(slot, [])))
+
     head = None
     if "head" in by_slot:
         head_name = by_slot["head"][0]
@@ -230,20 +252,33 @@ def build(filenames):
         head = attach(torso, head_name, "head", 0, head_scale)
     if ("eyes" in by_slot or "horns" in by_slot) and head is None:
         raise ValueError("Eyes and crests need a head part")
+    if head:
+        for slot in ("eyes", "horns"):
+            require_sockets(head[2], slot, len(by_slot.get(slot, [])))
 
-    # The tail attaches to the torso's tail socket; a torso whose animal has no tail image
-    # (bear) has nothing to size the tail against, so any requested tail is skipped
-    if "tail" in by_slot and f"{host}_tail" in parts:
-        tail_name = by_slot["tail"][0]
-        attach(torso, tail_name, "tail", 0, scale_for(tail_name, f"{host}_tail"))
+    # Bear torsos have a tail socket but no native tail PNG. Fit a donated tail
+    # using the relative torso heights instead of silently dropping it.
+    for i, tail_name in enumerate(by_slot.get("tail", [])):
+        if f"{host}_tail" in parts:
+            tail_scale = scale_for(tail_name, f"{host}_tail")
+        else:
+            donor_torso = f"{tail_name.split('_')[0]}_torso"
+            tail_scale = bbox_size(torso_img)[1] / bbox_size(load_part(donor_torso))[1]
+        attach(torso, tail_name, "tail", i, tail_scale)
 
     # Legs go on the torso's leg sockets in the order given (front_near, rear_near, ...)
     legs = by_slot.get("legs", [])
     socket_count = len(parts[torso_name]["sockets"]["legs"])
     if len(legs) > socket_count:
         raise ValueError(f"{torso_name} only has {socket_count} leg sockets, got {len(legs)} legs")
+    if leg_socket_indices is None:
+        leg_socket_indices = list(range(len(legs)))
+    if (len(leg_socket_indices) != len(legs)
+            or len(set(leg_socket_indices)) != len(leg_socket_indices)
+            or any(type(i) is not int or not 0 <= i < socket_count for i in leg_socket_indices)):
+        raise ValueError("leg_socket_indices must name one distinct existing socket per leg")
     if len(legs) > 0:
-        for i, leg_name in enumerate(legs):
+        for i, leg_name in zip(leg_socket_indices, legs):
             # Legs are sized to the host's own leg; a legless host (narwhal) leaves them unscaled
             host_leg = leg_for(host, i)
             scale = scale_for(leg_name, host_leg) if host_leg else 1.0
@@ -253,24 +288,21 @@ def build(filenames):
     if head:
         head_animal = head[2].split("_")[0]
         head_scale, head_width = head[1], bbox_size(head[3])[0]
-        if "eyes" in by_slot:
-            eye_name = by_slot["eyes"][0]
+        for i, eye_name in enumerate(by_slot.get("eyes", [])):
             eye_scale = head_scale * scale_for(eye_name, f"{head_animal}_eye")
-            attach(head[:3], eye_name, "eyes", 0, eye_scale)
-        if "horns" in by_slot:
+            attach(head[:3], eye_name, "eyes", i, eye_scale)
+        for i, horn_name in enumerate(by_slot.get("horns", [])):
             # Sized as if on its own animal's head, scaled to this head
-            horn_name = by_slot["horns"][0]
             own_head = bbox_size(load_part(f"{horn_name.split('_')[0]}_head"))[0]
-            attach(head[:3], horn_name, "horns", 0, head_width / own_head)
+            attach(head[:3], horn_name, "horns", i, head_width / own_head)
 
     # Wings are sized by the ratio of this torso's height to the wing's own animal's torso
-    if "wings" in by_slot:
-        wing_name = by_slot["wings"][0]
+    for i, wing_name in enumerate(by_slot.get("wings", [])):
         own_torso = bbox_size(load_part(f"{wing_name.split('_')[0]}_torso"))[1]
-        attach(torso, wing_name, "wings", 0, bbox_size(torso_img)[1] / own_torso)
+        attach(torso, wing_name, "wings", i, bbox_size(torso_img)[1] / own_torso)
 
-    # Give every part its own white border, like a cut-out in a ransom note
-    layers = [(z, add_outline(img), off) for z, img, off in layers]
+    if outline:
+        layers = [(z, add_outline(img), off) for z, img, off in layers]
 
     # Work on a canvas covering every part's visible pixels so nothing is clipped
     # (offsets can be negative, so left/top are the smallest coordinates actually used)
@@ -299,7 +331,7 @@ def build(filenames):
     return final, chosen  # the image and the part names in the order they were attached
 
 
-def create_creature(filenames, output_path=OUTPUT):
+def create_creature(filenames, output_path=OUTPUT, *, leg_socket_indices=None, pose=None, outline=True):
     """Build a creature from part filenames and save it as a PNG.
 
     Meant to be called from other modules:
@@ -307,9 +339,10 @@ def create_creature(filenames, output_path=OUTPUT):
         path = frankenstein.create_creature(["monkey_torso.png", "elephant_head.png", ...])
     Returns the Path of the saved image. Raises ValueError for invalid part lists.
     """
-    image, _ = build(filenames)
+    image, _ = build(filenames, leg_socket_indices=leg_socket_indices, pose=pose, outline=outline)
     output_path = Path(output_path)
-    image.save(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    image.save(output_path, format="PNG")
     return output_path
 
 

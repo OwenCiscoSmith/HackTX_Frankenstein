@@ -1,0 +1,12 @@
+{
+  "parts": [
+    {"slot": "torso", "animal": "lion", "count": 1},
+    {"slot": "head", "animal": "lion", "count": 1},
+    {"slot": "front_legs", "animal": "lion", "count": 2},
+    {"slot": "back_legs", "animal": "lion", "count": 2},
+    {"slot": "eyes", "animal": "lion", "count": 4},
+    {"slot": "horn", "animal": "narwhal", "count": 2},
+    {"slot": "wings", "animal": "peacock", "count": 2}
+  ],
+  "pose": "flying"
+}

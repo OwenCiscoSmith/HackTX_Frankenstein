@@ -1,16 +1,8 @@
+"""Provider-independent Pydantic schemas for the existing animal cutout catalog."""
+
 from pydantic import BaseModel, Field, ConfigDict
-import openai
-from langchain_openai import ChatOpenAI
-import os
 from pathlib import Path
-from dotenv import load_dotenv
 from typing import List, Optional
-
-
-load_dotenv();
-
-
-llm = ChatOpenAI(api_key=os.getenv('OPEN_AI'), model='gpt-4o-mini')
 
 Coord = tuple[float, float]  # (x, y)
 

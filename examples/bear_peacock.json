@@ -1,0 +1,11 @@
+{
+  "parts": [
+    {"slot": "torso", "animal": "bear", "count": 1},
+    {"slot": "head", "animal": "bear", "count": 1},
+    {"slot": "tail", "animal": "peacock", "count": 1},
+    {"slot": "front_legs", "animal": "bear", "count": 2},
+    {"slot": "back_legs", "animal": "bear", "count": 2},
+    {"slot": "eyes", "animal": "bear", "count": 1}
+  ],
+  "pose": null
+}
