@@ -17,7 +17,7 @@ from PIL import Image, ImageFilter
 # Paths are relative to this file so the script works from any working directory
 ANIMALS_DIR = Path(__file__).parent / "Animal_PNGS"
 LIBRARY = ANIMALS_DIR / "animal_library.json"
-OUTPUT = ANIMALS_DIR / "random_frankenstein.png"
+OUTPUT = ANIMALS_DIR / "animal_frankenstein.png"
 # Final image is OUTPUT_SIZE x OUTPUT_SIZE; creatures larger than that are scaled down to fit
 OUTPUT_SIZE = 1000
 # Thickness in pixels of the white border around each part
@@ -297,6 +297,20 @@ def build(filenames):
     final = Image.new("RGBA", (OUTPUT_SIZE, OUTPUT_SIZE), (0, 0, 0, 0))
     final.paste(canvas, ((OUTPUT_SIZE - canvas.width) // 2, (OUTPUT_SIZE - canvas.height) // 2))
     return final, chosen  # the image and the part names in the order they were attached
+
+
+def create_creature(filenames, output_path=OUTPUT):
+    """Build a creature from part filenames and save it as a PNG.
+
+    Meant to be called from other modules:
+        import frankenstein
+        path = frankenstein.create_creature(["monkey_torso.png", "elephant_head.png", ...])
+    Returns the Path of the saved image. Raises ValueError for invalid part lists.
+    """
+    image, _ = build(filenames)
+    output_path = Path(output_path)
+    image.save(output_path)
+    return output_path
 
 
 if __name__ == "__main__":

@@ -9,11 +9,11 @@ from enum import Enum
 from langchain_core.messages import SystemMessage, HumanMessage
 import json
 import random
+import sys
 
 load_dotenv()
 
 
-#monster = input("Enter a monster that you want to create(give characteristics): ") -> sample user input
 llm = ChatOpenAI(api_key=os.getenv('OPEN_AI'), model='gpt-4o-mini')
 
 
@@ -92,12 +92,6 @@ class PartRequest(BaseModel):
             raise ValueError(
                 f"variant '{self.variant.value}' is not valid for slot '{self.slot.value}'"
             )
-        animals_used = {p.animal for p in self.parts}
-        if len(animals_used) > MAX_ANIMALS:
-            raise ValueError(
-                f"a creature may use at most {MAX_ANIMALS} different animals, "
-                f"got {len(animals_used)}: {sorted(a.value for a in animals_used)}"
-            )
         return self
 
 
@@ -123,6 +117,13 @@ class MonsterRequest(BaseModel):
             raise ValueError("every creature needs a torso")
         if len(slots) != len(set(slots)):
             raise ValueError("each slot may appear only once; use 'count' for multiples")
+
+        animals_used = {p.animal for p in self.parts}
+        if len(animals_used) > MAX_ANIMALS:
+            raise ValueError(
+                f"a creature may use at most {MAX_ANIMALS} different animals, "
+                f"got {len(animals_used)}: {sorted(a.value for a in animals_used)}"
+            )
 
         # Count individual legs. front_legs with variant 'arms' are arms, not legs.
         leg_count = sum(
@@ -370,19 +371,23 @@ Output:
 }
 """
 
-messages = [
-    SystemMessage(content= f"{rules} \n {examples}"),
-    HumanMessage(content=(
+def classify(monster: str) -> MonsterRequest:
+    """Turn a free-text monster description into a validated MonsterRequest."""
+    messages = [
+        SystemMessage(content=f"{rules} \n {examples}"),
+        HumanMessage(content=(
             "Classify the creature description below into body parts.\n\n"
-            f"Description: {monster.strip()}"
+            f"Description: {monster.strip()}\n"
             f"Silly twists: {'; '.join(twists)}"
-        ))
-]
-
-result = llm.invoke(messages)
-
-final_result = result.model_dump_json()
+        )),
+    ]
+    # with_structured_output makes the model return a MonsterRequest instead of plain text
+    return llm.with_structured_output(MonsterRequest).invoke(messages)
 
 
-#print(result.content)
+if __name__ == "__main__":
+    # Pass the description on the command line, or type it when prompted
+    monster = " ".join(sys.argv[1:]) or input("Enter a monster that you want to create (give characteristics): ")
+    result = classify(monster)
+    print(result.model_dump_json(indent=2))
 
