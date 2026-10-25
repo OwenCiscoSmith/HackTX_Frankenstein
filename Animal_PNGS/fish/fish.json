@@ -1,0 +1,217 @@
+{
+  "parts": {
+    "fish_torso": {
+      "file": "fish/parts/fish_torso.png",
+      "slot": "body",
+      "plug": [
+        0,
+        0
+      ],
+      "z": 2,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic"
+      ],
+      "sockets": {
+        "head": [
+          {
+            "at": [
+              250,
+              455
+            ]
+          }
+        ],
+        "tail": [
+          {
+            "at": [
+              820,
+              470
+            ],
+            "pose": {
+              "swimming": {
+                "angle": 12
+              }
+            }
+          }
+        ],
+        "fins": [
+          {
+            "at": [
+              520,
+              320
+            ],
+            "must": [
+              "dorsal"
+            ]
+          },
+          {
+            "at": [
+              400,
+              520
+            ],
+            "must": [
+              "pectoral"
+            ],
+            "z": 3.5
+          },
+          {
+            "at": [
+              540,
+              610
+            ],
+            "must": [
+              "pelvic"
+            ]
+          },
+          {
+            "at": [
+              660,
+              610
+            ],
+            "must": [
+              "anal"
+            ]
+          },
+          {
+            "at": [
+              780,
+              470
+            ],
+            "must": [
+              "tail_fin"
+            ]
+          }
+        ]
+      }
+    },
+    "fish_head": {
+      "file": "fish/parts/fish_head.png",
+      "slot": "head",
+      "plug": [
+        250,
+        455
+      ],
+      "z": 5,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic"
+      ],
+      "sockets": {
+        "eyes": [
+          {
+            "at": [
+              185,
+              375
+            ]
+          }
+        ]
+      }
+    },
+    "fish_eye": {
+      "file": "fish/parts/fish_eye.png",
+      "slot": "eyes",
+      "plug": [
+        185,
+        375
+      ],
+      "z": 7,
+      "tags": [
+        "fish",
+        "aquatic",
+        "eye"
+      ]
+    },
+    "fish_tail": {
+      "file": "fish/parts/fish_tail.png",
+      "slot": "tail",
+      "plug": [
+        820,
+        470
+      ],
+      "z": 1,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic",
+        "tail"
+      ]
+    },
+    "fish_dorsal_fin": {
+      "file": "fish/parts/fish_dorsal_fin.png",
+      "slot": "fins",
+      "plug": [
+        520,
+        320
+      ],
+      "z": 3,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic",
+        "dorsal"
+      ]
+    },
+    "fish_pectoral_fin": {
+      "file": "fish/parts/fish_pectoral_fin.png",
+      "slot": "fins",
+      "plug": [
+        400,
+        520
+      ],
+      "z": 3.5,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic",
+        "pectoral"
+      ]
+    },
+    "fish_pelvic_fin": {
+      "file": "fish/parts/fish_pelvic_fin.png",
+      "slot": "fins",
+      "plug": [
+        540,
+        610
+      ],
+      "z": 1.5,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic",
+        "pelvic"
+      ]
+    },
+    "fish_anal_fin": {
+      "file": "fish/parts/fish_anal_fin.png",
+      "slot": "fins",
+      "plug": [
+        660,
+        610
+      ],
+      "z": 1.4,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic",
+        "anal"
+      ]
+    },
+    "fish_tail_fin": {
+      "file": "fish/parts/fish_tail_fin.png",
+      "slot": "fins",
+      "plug": [
+        780,
+        470
+      ],
+      "z": 2.5,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "aquatic",
+        "tail_fin"
+      ]
+    }
+  }
+}
