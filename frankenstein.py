@@ -80,7 +80,7 @@ def leg_for(animal, socket_index):
 LEGGED = [a for a in ANIMALS if LEGS[a]]
 
 # Optional head and body attachments that can be added to any creature
-HORNS = ["peacock_crest", "narwhal_horn"]
+HORNS = ["peacock_crest"]
 WINGS = ["peacock_wing", "fish_wing", "narwhal_wing_far", "narwhal_wing_near"]
 # Chance that each optional part is added
 OPTIONAL_CHANCE = 0.5
@@ -135,6 +135,7 @@ def fit_scale(img, ref_img):
     w, h = bbox_size(img)
     rw, rh = bbox_size(ref_img)
     scale = min(rw / w, rh / h)  # < 1 means img is bigger than the reference
+    mult = 1.0
     return min(1.0, scale * SIZE_MULTIPLIER) if scale < 1 else scale
 
 
