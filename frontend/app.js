@@ -40,7 +40,7 @@ $('create').onclick=async()=>{
     $('creature-name').textContent=used.map(title).join(' × ');$('creature-detail').textContent='One of a kind. Probably for the best.';$('download').href=result.image;$('download').hidden=false;
     $('warnings').replaceChildren(...result.warnings.map(w=>{const p=document.createElement('p');p.textContent=w;return p;}));$('warnings').hidden=!result.warnings.length;
     $('feedback').textContent='It’s alive! Your creature is ready to save.';
-  }catch(error){$('feedback').className='error';$('feedback').textContent=error.name==='AbortError'?'That took too long. Please try again.':error.message;}
+  }catch(error){$('preview-state').textContent='UNCHANGED — LAST PREVIEW';$('feedback').className='error';$('feedback').textContent=error.name==='AbortError'?'That took too long. Please try again.':error.message;}
   finally{clearTimeout(timeout);busy=false;$('shuffle').disabled=false;$('loading').hidden=true;$('create').disabled=mode==='parts'&&(selectedAnimals().length<2||selectedAnimals().length>3);}
 };
 updateDonors();

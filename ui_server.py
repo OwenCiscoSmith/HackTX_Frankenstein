@@ -75,6 +75,27 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_json(503, {'error': 'Install the Python dependencies: python -m pip install -r requirements.txt'})
         except (ValueError, TypeError, OSError) as exc:
             self.send_json(400, {'error': str(exc)})
+        except RuntimeError as exc:
+            # Report known configuration errors without exposing provider payloads
+            # or credentials. Follow the cause chain rather than returning raw errors.
+            cause = exc
+            authentication_failed = False
+            while cause is not None:
+                if type(cause).__name__ == 'AuthenticationError':
+                    authentication_failed = True
+                cause = cause.__cause__
+            message = (
+                'Google rejected the configured Gemini API key. Update the local .env '
+                'with a valid key, check GOOGLE_API_KEY (which takes priority over '
+                'GEMINI_API_KEY), and restart the server. You can still use Mix the parts.'
+                if authentication_failed else
+                'Gemini could not complete this request. Check the server terminal '
+                'for configuration or classification errors, or use Mix the parts.'
+            )
+            if str(exc).startswith(("Gemini classification failed (", "Gemini's classification still broke", "Gemini returned no", "Gemini did not complete")):
+                message = str(exc)
+                print(message, flush=True)
+            self.send_json(502, {'error': message})
         except Exception:
             self.send_json(502, {'error': 'Generation failed. Check your server terminal and Gemini configuration, or try the Parts builder.'})
             import traceback
@@ -82,5 +103,5 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    print('Magical Suprise: http://127.0.0.1:8000 (Ctrl+C to stop)')
+    print('Monster Mash: http://127.0.0.1:8000 (Ctrl+C to stop)')
     ThreadingHTTPServer(('127.0.0.1', 8000), Handler).serve_forever()

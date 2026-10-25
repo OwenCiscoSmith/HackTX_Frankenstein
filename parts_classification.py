@@ -5,6 +5,7 @@ from typing import Optional
 from enum import Enum
 import json
 import random
+import re
 import sys
 from dotenv import load_dotenv
 
@@ -572,7 +573,9 @@ def classify(monster: str) -> MonsterRequest:
     last_problems = ""
     try:
         for _ in range(MAX_ATTEMPTS):
-            twists = pick_silly_twists(list(animals))  # fresh twists each attempt
+            named_animals = [name for name in animals
+                             if re.search(r'\b' + re.escape(name) + r's?\b', monster, re.I)]
+            twists = [] if len(named_animals) >= 2 else pick_silly_twists(list(animals))
             try:
                 response = client.interactions.create(
                     model=get_model(),
@@ -580,6 +583,9 @@ def classify(monster: str) -> MonsterRequest:
                     input=(
                         "Classify the creature description below into body parts.\n\n"
                         f"Description: {monster.strip()}\n"
+                        "Interpret unnumbered plural hands/arms as a pair: front_legs, "
+                        "variant arms, count 2. When both hands and legs are requested, "
+                        "legs means back_legs, count 2 unless the user specifies a different count.\n"
                         f"Silly twists: {'; '.join(twists)}"
                         f"{feedback}"
                     ),
@@ -604,7 +610,20 @@ def classify(monster: str) -> MonsterRequest:
                 raise RuntimeError("Gemini returned no classification text. Try another description.")
 
             try:
-                return MonsterRequest.model_validate_json(text)
+                data = json.loads(text)
+                # The model sometimes emits count=1 for unnumbered plural limbs.
+                # Repair only this unambiguous wording before applying all rules.
+                paired_hands = re.search(r'\b(hands|arms)\b', monster, re.I)
+                paired_legs = re.search(r'\blegs\b', monster, re.I)
+                explicit_count = re.search(r'\b(\d+|one|two|three|four|five|six|single)\b', monster, re.I)
+                if paired_hands and paired_legs and not explicit_count and isinstance(data, dict):
+                    for part in data.get('parts', []):
+                        if isinstance(part, dict) and part.get('slot') in {'front_legs', 'back_legs'} and part.get('count', 1) == 1:
+                            part['count'] = 2
+                return MonsterRequest.model_validate(data)
+            except json.JSONDecodeError:
+                last_problems = 'Response must be valid JSON.'
+                feedback = '\nReturn a valid JSON object matching the schema.'
             except ValidationError as exc:
                 last_problems = "; ".join(
                     e["msg"].removeprefix("Value error, ") for e in exc.errors()
