@@ -1,9 +1,20 @@
+"""Frankenstein creature generator.
+
+Every animal is cut into parts (torso, head, eyes, tail, legs, horns, wings). Each part is a
+full-size transparent PNG, and animal_library.json records for every part:
+  - plug:    the point on the part that attaches to something
+  - sockets: points on the part where other parts attach (head, tail, legs, ...)
+  - z:       draw order (higher is drawn on top)
+build() starts from a torso, then moves each part so its plug lands on the matching socket,
+resizing swapped-in parts to fit. Finally it outlines every part in white and saves the result.
+"""
 import json
 import random
 import sys
 from pathlib import Path
 from PIL import Image, ImageFilter
 
+# Paths are relative to this file so the script works from any working directory
 ANIMALS_DIR = Path(__file__).parent / "Animal_PNGS"
 LIBRARY = ANIMALS_DIR / "animal_library.json"
 OUTPUT = ANIMALS_DIR / "random_frankenstein.png"
@@ -12,10 +23,13 @@ OUTPUT_SIZE = 1000
 # Thickness in pixels of the white border around each part
 OUTLINE_WIDTH = 5
 
-# The lion parts are badly cut and need re-cutting, so random mode skips them for now
+# Animals left out of random mode (lion and narwhal parts are badly cut/difficult to work with).
+# Their parts can still be requested explicitly through build()
 EXCLUDE = {"lion", "narwhal"}
+# Animals random mode can draw heads, torsos and eyes from
 ANIMALS = [a for a in ["elephant", "peacock", "monkey", "bear", "dog", "fish", "alligator", "lion", "lizard", "narwhal"]
            if a not in EXCLUDE]
+# Animals that have a tail image (bear has none)
 HAS_TAIL = [a for a in ["elephant", "monkey", "peacock", "fish", "dog", "alligator", "lion", "lizard", "narwhal"]
             if a not in EXCLUDE]
 # Swapped-in heads are kept between these fractions of the host torso's height
@@ -70,11 +84,13 @@ HORNS = ["peacock_crest", "narwhal_horn"]
 WINGS = ["peacock_wing", "fish_wing", "narwhal_wing_far", "narwhal_wing_near"]
 # Chance that each optional part is added
 OPTIONAL_CHANCE = 0.5
-# Makes swapped-in parts that had to be shrunk larger than the fitted size
+# Swapped-in parts (tails, legs, eyes) are shrunk to fit the host's equivalent part, then
+# multiplied by this so they don't end up tiny (never larger than their original size)
 SIZE_MULTIPLIER = 4
 
 
 def load_part(name):
+    """Load a part image by name, e.g. "monkey_torso" -> a 1254x1254 RGBA image."""
     # Part names are prefixed with their animal, which names the folder:
     # Animal_PNGS/<animal>/<animal>_parts/<part name>.png
     animal = name.split("_")[0]
@@ -82,19 +98,23 @@ def load_part(name):
 
 
 def bbox_size(img):
+    """(width, height) of the visible pixels, ignoring the transparent canvas around them."""
     x0, y0, x1, y1 = img.getbbox()
     return x1 - x0, y1 - y0
 
 
 def add_outline(img, width=OUTLINE_WIDTH):
     """Return img with an opaque white border of `width` px around its visible pixels."""
+    # Silhouette mask: fully opaque wherever the part has (nearly) any visible pixel
     alpha = img.getchannel("A").point(lambda a: 255 if a > 10 else 0)
-    # Grow the silhouette by `width` px, rounding it by alternating square and diamond steps
+    # Grow the silhouette 1 px per step. MaxFilter alone grows in squares, so every second
+    # step is blurred and re-thresholded to round the corners
     grown = alpha
     for i in range(width):
         grown = grown.filter(ImageFilter.MaxFilter(3))
         if i % 2:
             grown = grown.filter(ImageFilter.GaussianBlur(0.8)).point(lambda a: 255 if a > 128 else 0)
+    # White layer shaped like the grown silhouette, with the original part drawn on top
     out = Image.new("RGBA", img.size, (255, 255, 255, 0))
     out.putalpha(grown)
     out.alpha_composite(img)
@@ -105,12 +125,13 @@ def fit_scale(img, ref_img):
     """Scale that makes img's visible area fit inside ref_img's; boosted when shrinking."""
     w, h = bbox_size(img)
     rw, rh = bbox_size(ref_img)
-    scale = min(rw / w, rh / h)
+    scale = min(rw / w, rh / h)  # < 1 means img is bigger than the reference
     return min(1.0, scale * SIZE_MULTIPLIER) if scale < 1 else scale
 
 
 def random_parts(rng):
     """Pick a random set of part filenames that build() can assemble."""
+    # The host animal supplies the torso; the head, tail and eyes come from random animals
     host = rng.choice(ANIMALS)
     names = [f"{host}_torso", f"{rng.choice(ANIMALS)}_head", f"{rng.choice(HAS_TAIL)}_tail"]
 
@@ -121,6 +142,7 @@ def random_parts(rng):
         donor = front_donor if i % 2 == 0 else rear_donor
         names.append(leg_for(donor, i))
     names.append(f"{rng.choice(ANIMALS)}_eye")
+    # Horns and wings are each added only some of the time
     if rng.random() < OPTIONAL_CHANCE:
         names.append(rng.choice(HORNS))
     if rng.random() < OPTIONAL_CHANCE:
@@ -134,12 +156,14 @@ def build(filenames):
     Needs exactly one torso. Legs attach to the torso's leg sockets in the order given.
     """
     parts = json.loads(LIBRARY.read_text())["parts"]
-    layers = []  # (z, image, offset)
+    layers = []  # (z, image, offset): every placed part, drawn later in z order
+    # Accept names with or without ".png"
     chosen = [Path(f).stem for f in filenames]
     unknown = [n for n in chosen if n not in parts]
     if unknown:
         raise ValueError(f"Unknown parts: {', '.join(unknown)}")
 
+    # Group the requested parts by slot (body, head, tail, legs, ...) and validate them
     by_slot = {}
     for n in chosen:
         by_slot.setdefault(parts[n]["slot"], []).append(n)
@@ -151,6 +175,11 @@ def build(filenames):
     chosen = []  # rebuilt below in attach order
 
     def attach(parent, name, slot, idx, scale):
+        """Place part `name` on socket number `idx` of `slot` on the parent part.
+
+        parent is (offset, scale, name) of the already-placed part. Returns the same kind of
+        tuple plus the resized image, so this part can in turn be a parent (eyes on a head).
+        """
         p_off, p_scale, p_name = parent
         socket = parts[p_name]["sockets"][slot][idx]
         sx, sy = socket["at"]
@@ -158,10 +187,12 @@ def build(filenames):
         img = load_part(name)
         if scale != 1.0:
             img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
-        # Socket angle is clockwise
+        # Rotate around the plug so the plug stays put. The socket angle is clockwise,
+        # while PIL rotates counter-clockwise, hence the minus sign
         angle = socket.get("angle", 0)
         if angle:
             img = img.rotate(-angle, resample=Image.BICUBIC, center=(px * scale, py * scale))
+        # Top-left corner such that the part's plug lands exactly on the parent's socket
         off = (round(p_off[0] + sx * p_scale - px * scale),
                round(p_off[1] + sy * p_scale - py * scale))
         layers.append((parts[name]["z"], img, off))
@@ -169,15 +200,17 @@ def build(filenames):
         return off, scale, name, img
 
     def scale_for(name, host_ref_name):
+        """Scale for a part: 1.0 if it's from the same animal as the reference, else fitted to it."""
         if name.split("_")[0] == host_ref_name.split("_")[0]:
             return 1.0
         return fit_scale(load_part(name), load_part(host_ref_name))
 
+    # The torso is the root: it is never moved or resized, and everything attaches to it
     torso_name = by_slot["body"][0]
     host = torso_name.split("_")[0]
     torso_img = load_part(torso_name)
     layers.append((parts[torso_name]["z"], torso_img, (0, 0)))
-    chosen.append(torso_name)
+    chosen.append(torso_name)  # chosen is rebuilt in attach order for the printed list
     torso = ((0, 0), 1.0, torso_name)
 
     head = None
@@ -192,15 +225,19 @@ def build(filenames):
                          HEAD_RATIO[1] * torso_h)
             head_img = load_part(head_name)
             hw, hh = bbox_size(head_img)
+            # Also never let the head be wider than the torso is tall
             head_scale = min(target / hh, 1.0 * torso_h / hw)
         head = attach(torso, head_name, "head", 0, head_scale)
     if ("eyes" in by_slot or "horns" in by_slot) and head is None:
         raise ValueError("Eyes and crests need a head part")
 
+    # The tail attaches to the torso's tail socket; a torso whose animal has no tail image
+    # (bear) has nothing to size the tail against, so any requested tail is skipped
     if "tail" in by_slot and f"{host}_tail" in parts:
         tail_name = by_slot["tail"][0]
         attach(torso, tail_name, "tail", 0, scale_for(tail_name, f"{host}_tail"))
 
+    # Legs go on the torso's leg sockets in the order given (front_near, rear_near, ...)
     legs = by_slot.get("legs", [])
     socket_count = len(parts[torso_name]["sockets"]["legs"])
     if len(legs) > socket_count:
@@ -226,6 +263,7 @@ def build(filenames):
             own_head = bbox_size(load_part(f"{horn_name.split('_')[0]}_head"))[0]
             attach(head[:3], horn_name, "horns", 0, head_width / own_head)
 
+    # Wings are sized by the ratio of this torso's height to the wing's own animal's torso
     if "wings" in by_slot:
         wing_name = by_slot["wings"][0]
         own_torso = bbox_size(load_part(f"{wing_name.split('_')[0]}_torso"))[1]
@@ -235,6 +273,7 @@ def build(filenames):
     layers = [(z, add_outline(img), off) for z, img, off in layers]
 
     # Work on a canvas covering every part's visible pixels so nothing is clipped
+    # (offsets can be negative, so left/top are the smallest coordinates actually used)
     bounds = []
     for _, img, off in layers:
         x0, y0, x1, y1 = img.getbbox()
@@ -243,7 +282,8 @@ def build(filenames):
     right, bottom = max(b[2] for b in bounds), max(b[3] for b in bounds)
 
     canvas = Image.new("RGBA", (right - left, bottom - top), (0, 0, 0, 0))
-    # Draw back-to-front by z
+    # Draw back-to-front by z. Each part is pasted onto a transparent layer first, because
+    # alpha_composite can't take negative offsets or parts that hang off the canvas edge
     for _, img, off in sorted(layers, key=lambda l: l[0]):
         layer = Image.new("RGBA", (right - left + img.width, bottom - top + img.height), (0, 0, 0, 0))
         layer.paste(img, (off[0] - left, off[1] - top))
@@ -256,7 +296,7 @@ def build(filenames):
                                Image.LANCZOS)
     final = Image.new("RGBA", (OUTPUT_SIZE, OUTPUT_SIZE), (0, 0, 0, 0))
     final.paste(canvas, ((OUTPUT_SIZE - canvas.width) // 2, (OUTPUT_SIZE - canvas.height) // 2))
-    return final, chosen
+    return final, chosen  # the image and the part names in the order they were attached
 
 
 if __name__ == "__main__":
