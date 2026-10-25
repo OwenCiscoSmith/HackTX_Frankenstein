@@ -1,4 +1,29 @@
-# HackTX Frankenstein
+# Magical Suprise
+
+## Creature Lab UI
+
+The local browser UI includes manual animal-part selection, an AI description
+tab, random combinations, rendered preview, PNG download, and assembly warnings.
+Manual mode does not call Gemini. The engine allows at most three donor animals.
+
+From this folder in PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe ui_server.py
+```
+
+Open http://127.0.0.1:8000. The initial image is a labeled sample; click
+**Bring it to life** to generate your selected creature. The **Surprise me**
+button changes the ingredients; click **Bring it to life** to assemble them.
+For the AI tab, configure the existing `.env` as described below.
+
+UI files are in `frontend/`: `index.html` is the layout, `style.css` controls
+the visual design and responsive layout, and `app.js` handles interaction.
+`ui_server.py` connects `POST /api/create` to `logic.generate_creature()` and
+serves only frontend files and PNG assets. API keys stay on the server.
+Use this loopback-only server for local development.
 
 Build a creature PNG from the animal cutouts in `Animal_PNGS`. This edition uses
 Google Gemini through the official `google-genai` Python SDK for prompt classification.

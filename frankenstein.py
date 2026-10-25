@@ -6,7 +6,7 @@ full-size transparent PNG, and animal_library.json records for every part:
   - sockets: points on the part where other parts attach (head, tail, legs, ...)
   - z:       draw order (higher is drawn on top)
 build() starts from a torso, then moves each part so its plug lands on the matching socket,
-resizing swapped-in parts to fit. Finally it outlines every part in white and saves the result.
+resizing swapped-in parts to fit. Finally it outlines the assembled silhouette and saves the result.
 """
 import json
 import random
@@ -84,9 +84,6 @@ HORNS = ["peacock_crest"]
 WINGS = ["peacock_wing", "fish_wing", "narwhal_wing_far", "narwhal_wing_near"]
 # Chance that each optional part is added
 OPTIONAL_CHANCE = 0.5
-# Swapped-in parts (tails, legs, eyes) are shrunk to fit the host's equivalent part, then
-# multiplied by this so they don't end up tiny (never larger than their original size)
-SIZE_MULTIPLIER = 4
 
 
 def part_path(name):
@@ -131,12 +128,10 @@ def add_outline(img, width=OUTLINE_WIDTH):
 
 
 def fit_scale(img, ref_img):
-    """Scale that makes img's visible area fit inside ref_img's; boosted when shrinking."""
+    """Fit the donor's visible area inside the native part without enlarging the fit."""
     w, h = bbox_size(img)
     rw, rh = bbox_size(ref_img)
-    scale = min(rw / w, rh / h)  # < 1 means img is bigger than the reference
-    mult = 1.0
-    return min(1.0, scale * SIZE_MULTIPLIER) if scale < 1 else scale
+    return min(rw / w, rh / h)
 
 
 def random_parts(rng):
@@ -218,6 +213,15 @@ def build(filenames, *, leg_socket_indices=None, pose=None, outline=True):
         """Scale for a part: 1.0 if it's from the same animal as the reference, else fitted to it."""
         if name.split("_")[0] == host_ref_name.split("_")[0]:
             return 1.0
+        if parts[name]["slot"] == "legs":
+            # Match shoulder/hip-to-foot length, not the surrounding PNG canvas
+            # or the donor's width. This keeps swapped feet near the host ground.
+            donor_bottom = load_part(name).getbbox()[3]
+            host_bottom = load_part(host_ref_name).getbbox()[3]
+            donor_length = donor_bottom - parts[name]["plug"][1]
+            host_length = host_bottom - parts[host_ref_name]["plug"][1]
+            if donor_length > 0 and host_length > 0:
+                return host_length / donor_length
         return fit_scale(load_part(name), load_part(host_ref_name))
 
     # The torso is the root: it is never moved or resized, and everything attaches to it
@@ -302,9 +306,6 @@ def build(filenames, *, leg_socket_indices=None, pose=None, outline=True):
         own_torso = bbox_size(load_part(f"{wing_name.split('_')[0]}_torso"))[1]
         attach(torso, wing_name, "wings", i, bbox_size(torso_img)[1] / own_torso)
 
-    if outline:
-        layers = [(z, add_outline(img), off) for z, img, off in layers]
-
     # Work on a canvas covering every part's visible pixels so nothing is clipped
     # (offsets can be negative, so left/top are the smallest coordinates actually used)
     bounds = []
@@ -321,6 +322,14 @@ def build(filenames, *, leg_socket_indices=None, pose=None, outline=True):
         layer = Image.new("RGBA", (right - left + img.width, bottom - top + img.height), (0, 0, 0, 0))
         layer.paste(img, (off[0] - left, off[1] - top))
         canvas.alpha_composite(layer.crop((0, 0, canvas.width, canvas.height)))
+
+    # Outline the completed silhouette once. Outlining individual cutouts draws
+    # white seams through every shoulder, hip and neck, exposing the crop edges.
+    if outline:
+        padding = OUTLINE_WIDTH + 2
+        padded = Image.new("RGBA", (canvas.width + 2 * padding, canvas.height + 2 * padding))
+        padded.paste(canvas, (padding, padding))
+        canvas = add_outline(padded)
 
     # Shrink (never enlarge) to fit the output size, then center on the output canvas
     shrink = min(1.0, OUTPUT_SIZE / canvas.width, OUTPUT_SIZE / canvas.height)
