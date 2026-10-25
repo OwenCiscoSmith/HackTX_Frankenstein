@@ -1,0 +1,224 @@
+{
+  "parts": {
+    "alligator_torso": {
+      "file": "alligator/parts/alligator_torso.png",
+      "slot": "body",
+      "plug": [
+        0,
+        0
+      ],
+      "z": 2,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator"
+      ],
+      "sockets": {
+        "head": [
+          {
+            "at": [
+              250,
+              340
+            ]
+          }
+        ],
+        "legs": [
+          {
+            "at": [
+              345,
+              670
+            ],
+            "must": [
+              "left",
+              "front"
+            ],
+            "pose": {
+              "running": {
+                "angle": -25
+              }
+            }
+          },
+          {
+            "at": [
+              430,
+              675
+            ],
+            "must": [
+              "right",
+              "front"
+            ],
+            "z": 1.5,
+            "shade": 0.8,
+            "pose": {
+              "running": {
+                "angle": 25
+              }
+            }
+          },
+          {
+            "at": [
+              690,
+              680
+            ],
+            "must": [
+              "left",
+              "back"
+            ],
+            "pose": {
+              "running": {
+                "angle": 20
+              }
+            }
+          },
+          {
+            "at": [
+              775,
+              685
+            ],
+            "must": [
+              "right",
+              "back"
+            ],
+            "z": 1.2,
+            "shade": 0.8,
+            "pose": {
+              "running": {
+                "angle": -20
+              }
+            }
+          }
+        ],
+        "tail": [
+          {
+            "at": [
+              840,
+              465
+            ],
+            "pose": {
+              "running": {
+                "angle": 12
+              }
+            }
+          }
+        ]
+      }
+    },
+    "alligator_head": {
+      "file": "alligator/parts/alligator_head.png",
+      "slot": "head",
+      "plug": [
+        250,
+        340
+      ],
+      "z": 5,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator"
+      ],
+      "sockets": {
+        "eyes": [
+          {
+            "at": [
+              195,
+              225
+            ]
+          }
+        ]
+      }
+    },
+    "alligator_front_left_leg": {
+      "file": "alligator/parts/alligator_front_left_leg.png",
+      "slot": "legs",
+      "plug": [
+        345,
+        670
+      ],
+      "z": 3,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator",
+        "left",
+        "front"
+      ]
+    },
+    "alligator_front_right_leg": {
+      "file": "alligator/parts/alligator_front_right_leg.png",
+      "slot": "legs",
+      "plug": [
+        430,
+        675
+      ],
+      "z": 1.5,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator",
+        "right",
+        "front"
+      ]
+    },
+    "alligator_back_left_leg": {
+      "file": "alligator/parts/alligator_back_left_leg.png",
+      "slot": "legs",
+      "plug": [
+        690,
+        680
+      ],
+      "z": 3,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator",
+        "left",
+        "back"
+      ]
+    },
+    "alligator_back_right_leg": {
+      "file": "alligator/parts/alligator_back_right_leg.png",
+      "slot": "legs",
+      "plug": [
+        775,
+        685
+      ],
+      "z": 1.2,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator",
+        "right",
+        "back"
+      ]
+    },
+    "alligator_tail": {
+      "file": "alligator/parts/alligator_tail.png",
+      "slot": "tail",
+      "plug": [
+        840,
+        465
+      ],
+      "z": 1,
+      "recolor": true,
+      "tags": [
+        "reptile",
+        "alligator",
+        "tail"
+      ]
+    },
+    "alligator_eye": {
+      "file": "alligator/parts/alligator_eye.png",
+      "slot": "eyes",
+      "plug": [
+        195,
+        225
+      ],
+      "z": 7,
+      "tags": [
+        "reptile",
+        "alligator",
+        "eye"
+      ]
+    }
+  }
+}
