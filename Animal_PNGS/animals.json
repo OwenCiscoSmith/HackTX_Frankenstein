@@ -1,0 +1,32 @@
+{
+  "monkey": {
+    "tags": ["furry", "small", "playful", "agile", "curious", "cute", "long_tailed", "clawed"]
+  },
+  "fish": {
+    "tags": ["scaly", "aquatic", "sleek", "finned", "slimy", "small", "cold_blooded"]
+  },
+  "lion": {
+    "tags": ["furry", "large", "maned", "powerful", "aggressive", "scary", "clawed", "fanged"]
+  },
+  "elephant": {
+    "tags": ["large", "heavy", "gentle", "thick_skinned", "tusked", "long_nosed", "big_eared"]
+  },
+  "narwhal": {
+    "tags": ["aquatic", "horned", "tusked", "smooth", "sleek", "large", "gentle", "spotted"]
+  },
+  "bear": {
+    "tags": ["furry", "large", "heavy", "powerful", "shaggy", "clawed", "aggressive", "fanged"]
+  },
+  "dog": {
+    "tags": ["furry", "friendly", "playful", "cute", "loyal", "floppy_eared", "clawed", "long_tailed"]
+  },
+  "peacock": {
+    "tags": ["feathered", "colorful", "elegant", "winged", "crested", "long_tailed", "beaked"]
+  },
+  "lizard": {
+    "tags": ["scaly", "small", "sleek", "cold_blooded", "clawed", "long_tailed", "spiny"]
+  },
+  "alligator": {
+    "tags": ["scaly", "large", "armored", "aggressive", "scary", "toothed", "clawed", "aquatic", "long_tailed", "cold_blooded"]
+  }
+}
