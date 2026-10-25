@@ -1,0 +1,185 @@
+{
+  "parts": {
+    "narwhal_torso": {
+      "file": "narwhal/parts/narwhal_torso.png",
+      "slot": "body",
+      "plug": [
+        0,
+        0
+      ],
+      "z": 2,
+      "recolor": true,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic"
+      ],
+      "sockets": {
+        "head": [
+          {
+            "at": [
+              260,
+              440
+            ]
+          }
+        ],
+        "tail": [
+          {
+            "at": [
+              825,
+              485
+            ],
+            "pose": {
+              "swimming": {
+                "angle": 10
+              }
+            }
+          }
+        ],
+        "fins": [
+          {
+            "at": [
+              420,
+              555
+            ],
+            "must": [
+              "left"
+            ],
+            "pose": {
+              "swimming": {
+                "angle": -12
+              }
+            }
+          },
+          {
+            "at": [
+              500,
+              565
+            ],
+            "must": [
+              "right"
+            ],
+            "z": 1.4,
+            "shade": 0.8,
+            "pose": {
+              "swimming": {
+                "angle": 12
+              }
+            }
+          }
+        ]
+      }
+    },
+    "narwhal_head": {
+      "file": "narwhal/parts/narwhal_head.png",
+      "slot": "head",
+      "plug": [
+        260,
+        440
+      ],
+      "z": 5,
+      "recolor": true,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic"
+      ],
+      "sockets": {
+        "eyes": [
+          {
+            "at": [
+              205,
+              370
+            ]
+          }
+        ],
+        "tusks": [
+          {
+            "at": [
+              135,
+              425
+            ]
+          }
+        ]
+      }
+    },
+    "narwhal_eye": {
+      "file": "narwhal/parts/narwhal_eye.png",
+      "slot": "eyes",
+      "plug": [
+        205,
+        370
+      ],
+      "z": 7,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic",
+        "eye"
+      ]
+    },
+    "narwhal_tusk": {
+      "file": "narwhal/parts/narwhal_tusk.png",
+      "slot": "tusks",
+      "plug": [
+        135,
+        425
+      ],
+      "z": 6,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic",
+        "tusk"
+      ]
+    },
+    "narwhal_left_fin": {
+      "file": "narwhal/parts/narwhal_left_fin.png",
+      "slot": "fins",
+      "plug": [
+        420,
+        555
+      ],
+      "z": 3,
+      "recolor": true,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic",
+        "left"
+      ]
+    },
+    "narwhal_right_fin": {
+      "file": "narwhal/parts/narwhal_right_fin.png",
+      "slot": "fins",
+      "plug": [
+        500,
+        565
+      ],
+      "z": 1.4,
+      "recolor": true,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic",
+        "right"
+      ]
+    },
+    "narwhal_tail": {
+      "file": "narwhal/parts/narwhal_tail.png",
+      "slot": "tail",
+      "plug": [
+        825,
+        485
+      ],
+      "z": 1,
+      "recolor": true,
+      "tags": [
+        "mammal",
+        "narwhal",
+        "aquatic",
+        "tail"
+      ]
+    }
+  }
+}
