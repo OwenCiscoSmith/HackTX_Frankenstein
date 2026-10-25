@@ -4,7 +4,7 @@
 
 The local browser UI includes manual animal-part selection, an AI description
 tab, random combinations, rendered preview, PNG download, and assembly warnings.
-Manual mode does not call Gemini. The engine allows at most three donor animals.
+Manual mode does not call Gemini. The engine allows two or three donor animals.
 
 From this folder in PowerShell:
 

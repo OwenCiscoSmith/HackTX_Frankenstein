@@ -14,11 +14,11 @@ for(const [slot,[name,hint,icon]] of Object.entries(labels)) {
   for(const animal of [...(optional.has(slot)?['none']:[]),...donors[slot]]) {
     const option=document.createElement('option');option.value=animal;option.textContent=title(animal);select.append(option);
   }
-  select.value=optional.has(slot)?'none':'bear';select.addEventListener('change',updateDonors);
+  select.value=optional.has(slot)?'none':(slot==='head'?'dog':'bear');select.addEventListener('change',updateDonors);
   row.append(badge,label,select);$('selectors').append(row);
 }
 function selectedAnimals(){return [...new Set(Object.keys(labels).map(s=>$(s).value).filter(a=>a!=='none'))];}
-function updateDonors(){const count=selectedAnimals().length;$('donor-count').textContent=`${count} / 3 animals`;$('donor-count').parentElement.classList.toggle('over',count>3);$('donor-dots').replaceChildren(...Array.from({length:count},()=>document.createElement('span')));$('create').disabled=busy||(mode==='parts'&&count>3);if(!busy){$('feedback').textContent=count>3&&mode==='parts'?'Use up to three donor animals to match the creature engine.':'';$('feedback').className=count>3&&mode==='parts'?'error':'';}}
+function updateDonors(){const count=selectedAnimals().length;$('donor-count').textContent=`${count} / 3 animals`;$('donor-count').parentElement.classList.toggle('over',(count<2||count>3));$('donor-dots').replaceChildren(...Array.from({length:count},()=>document.createElement('span')));$('create').disabled=busy||(mode==='parts'&&(count<2||count>3));if(!busy){$('feedback').textContent=(count<2||count>3)&&mode==='parts'?'Choose two or three donor animals to match the creature engine.':'';$('feedback').className=(count<2||count>3)&&mode==='parts'?'error':'';}}
 function setMode(next){if(busy)return;mode=next;for(const item of ['parts','prompt']){$(`${item}-tab`).setAttribute('aria-selected',String(item===mode));$(`${item}-tab`).tabIndex=item===mode?0:-1;$(`${item}-panel`).hidden=item!==mode;}updateDonors();}
 for(const item of ['parts','prompt']){$(`${item}-tab`).onclick=()=>setMode(item);$(`${item}-tab`).onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();setMode(item==='parts'?'prompt':'parts');$(`${mode}-tab`).focus();}};}
 $('example').onclick=()=>{$('prompt').value='A bear with a peacock tail';$('prompt').focus();};
@@ -41,6 +41,6 @@ $('create').onclick=async()=>{
     $('warnings').replaceChildren(...result.warnings.map(w=>{const p=document.createElement('p');p.textContent=w;return p;}));$('warnings').hidden=!result.warnings.length;
     $('feedback').textContent='It’s alive! Your creature is ready to save.';
   }catch(error){$('feedback').className='error';$('feedback').textContent=error.name==='AbortError'?'That took too long. Please try again.':error.message;}
-  finally{clearTimeout(timeout);busy=false;$('shuffle').disabled=false;$('loading').hidden=true;$('create').disabled=mode==='parts'&&selectedAnimals().length>3;}
+  finally{clearTimeout(timeout);busy=false;$('shuffle').disabled=false;$('loading').hidden=true;$('create').disabled=mode==='parts'&&(selectedAnimals().length<2||selectedAnimals().length>3);}
 };
 updateDonors();
