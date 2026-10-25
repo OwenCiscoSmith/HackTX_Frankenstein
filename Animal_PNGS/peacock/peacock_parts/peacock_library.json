@@ -1,7 +1,20 @@
 {
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
  "parts": {
   "peacock_torso": {
-   "file": "peacock/parts/torso.png",
+   "file": "peacock/peacock_parts/peacock_torso.png",
    "slot": "body",
    "plug": [
     0,
@@ -153,10 +166,13 @@
       }
      }
     ]
+   },
+   "defaults": {
+    "mouth": 0
    }
   },
   "peacock_head": {
-   "file": "peacock/parts/head.png",
+   "file": "peacock/peacock_parts/peacock_head.png",
    "slot": "head",
    "plug": [
     176,
@@ -166,7 +182,8 @@
    "recolor": true,
    "tags": [
     "bird",
-    "peacock"
+    "peacock",
+    "realistic"
    ],
    "sockets": {
     "eyes": [
@@ -233,11 +250,30 @@
       ],
       "angle": -55
      }
+    ],
+    "ears": [
+     {
+      "at": [
+       186,
+       196
+      ],
+      "scale": 0.4
+     },
+     {
+      "at": [
+       200,
+       170
+      ],
+      "z": 4.9,
+      "shade": 0.8,
+      "angle": -15,
+      "scale": 0.4
+     }
     ]
    }
   },
   "peacock_crest": {
-   "file": "peacock/parts/crest.png",
+   "file": "peacock/peacock_parts/peacock_crest.png",
    "slot": "horns",
    "plug": [
     195,
@@ -251,7 +287,7 @@
    ]
   },
   "peacock_eye": {
-   "file": "peacock/parts/eye.png",
+   "file": "peacock/peacock_parts/peacock_eye.png",
    "slot": "eyes",
    "plug": [
     148,
@@ -264,7 +300,7 @@
    ]
   },
   "peacock_wing": {
-   "file": "peacock/parts/wing.png",
+   "file": "peacock/peacock_parts/peacock_wing.png",
    "slot": "wings",
    "plug": [
     182,
@@ -279,7 +315,7 @@
    ]
   },
   "peacock_tail": {
-   "file": "peacock/parts/tail.png",
+   "file": "peacock/peacock_parts/peacock_tail.png",
    "slot": "tail",
    "plug": [
     395,
@@ -294,7 +330,7 @@
    ]
   },
   "peacock_leg_left": {
-   "file": "peacock/parts/leg_left.png",
+   "file": "peacock/peacock_parts/peacock_leg_left.png",
    "slot": "legs",
    "plug": [
     229,
@@ -308,7 +344,7 @@
    ]
   },
   "peacock_leg_right": {
-   "file": "peacock/parts/leg_right.png",
+   "file": "peacock/peacock_parts/peacock_leg_right.png",
    "slot": "legs",
    "plug": [
     279,

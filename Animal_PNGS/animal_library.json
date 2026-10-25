@@ -1,0 +1,704 @@
+{
+ "colors": {
+  "red": 0,
+  "orange": 12,
+  "yellow": 25,
+  "green": 60,
+  "teal": 85,
+  "cyan": 90,
+  "blue": 108,
+  "purple": 138,
+  "violet": 138,
+  "magenta": 155,
+  "pink": 165
+ },
+ "aliases": {
+  "elephant": [
+   "elephant",
+   "trunked",
+   "tusked",
+   "pachyderm"
+  ]
+ },
+ "parts": {
+  "elephant_torso": {
+   "file": "elephant/elephant_parts/torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "normal"
+   ],
+   "defaults": {
+    "legs": 4,
+    "ears": 1,
+    "mouth": 0,
+    "eyes": 1
+   },
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       396,
+       430
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       790,
+       262
+      ],
+      "scale": 1.5,
+      "pose": {
+       "flying": {
+        "angle": -45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       815,
+       250
+      ],
+      "scale": 1.5,
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": -8,
+      "pose": {
+       "flying": {
+        "angle": -70
+       }
+      }
+     },
+     {
+      "at": [
+       840,
+       280
+      ],
+      "scale": 1.5,
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": 22,
+      "pose": {
+       "flying": {
+        "angle": -20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       765,
+       265
+      ],
+      "scale": 1.5,
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": -35,
+      "pose": {
+       "flying": {
+        "angle": -95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       1170,
+       508
+      ],
+      "pose": {
+       "flying": {
+        "angle": -10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       608,
+       655
+      ],
+      "prefer": [
+       "front",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       1087,
+       737
+      ],
+      "prefer": [
+       "rear",
+       "near"
+      ]
+     },
+     {
+      "at": [
+       454,
+       618
+      ],
+      "prefer": [
+       "front",
+       "far"
+      ],
+      "shade": 0.85
+     },
+     {
+      "at": [
+       895,
+       740
+      ],
+      "prefer": [
+       "rear",
+       "far"
+      ],
+      "shade": 0.85
+     }
+    ]
+   }
+  },
+  "elephant_head": {
+   "file": "elephant/elephant_parts/head.png",
+   "slot": "head",
+   "plug": [
+    396,
+    430
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "trunk",
+    "tusks",
+    "normal"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       302,
+       364
+      ]
+     },
+     {
+      "at": [
+       240,
+       320
+      ]
+     },
+     {
+      "at": [
+       345,
+       300
+      ]
+     },
+     {
+      "at": [
+       300,
+       440
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       270,
+       150
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.2
+       }
+      },
+      "angle": 20
+     },
+     {
+      "at": [
+       215,
+       85
+      ],
+      "angle": -25
+     },
+     {
+      "at": [
+       325,
+       60
+      ],
+      "angle": 25
+     },
+     {
+      "at": [
+       180,
+       125
+      ],
+      "angle": -45
+     }
+    ],
+    "mouth": [
+     {
+      "at": [
+       290,
+       520
+      ]
+     }
+    ]
+   }
+  },
+  "elephant_eye": {
+   "file": "elephant/elephant_parts/eye.png",
+   "slot": "eyes",
+   "plug": [
+    302,
+    364
+   ],
+   "z": 7,
+   "tags": [
+    "elephant",
+    "mammal",
+    "normal"
+   ]
+  },
+  "elephant_tail": {
+   "file": "elephant/elephant_parts/tail.png",
+   "slot": "tail",
+   "plug": [
+    1170,
+    508
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "normal"
+   ]
+  },
+  "elephant_leg_front_near": {
+   "file": "elephant/elephant_parts/leg_front_near.png",
+   "slot": "legs",
+   "plug": [
+    608,
+    655
+   ],
+   "z": 1.6,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "front",
+    "near",
+    "normal"
+   ]
+  },
+  "elephant_leg_front_far": {
+   "file": "elephant/elephant_parts/leg_front_far.png",
+   "slot": "legs",
+   "plug": [
+    454,
+    618
+   ],
+   "z": 1.1,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "front",
+    "far",
+    "normal"
+   ]
+  },
+  "elephant_leg_rear_near": {
+   "file": "elephant/elephant_parts/leg_rear_near.png",
+   "slot": "legs",
+   "plug": [
+    1087,
+    737
+   ],
+   "z": 1.5,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "rear",
+    "near",
+    "normal"
+   ]
+  },
+  "elephant_leg_rear_far": {
+   "file": "elephant/elephant_parts/leg_rear_far.png",
+   "slot": "legs",
+   "plug": [
+    895,
+    740
+   ],
+   "z": 1,
+   "recolor": true,
+   "tags": [
+    "elephant",
+    "mammal",
+    "rear",
+    "far",
+    "normal"
+   ]
+  },
+  "peacock_torso": {
+   "file": "peacock/peacock_parts/peacock_torso.png",
+   "slot": "body",
+   "plug": [
+    0,
+    0
+   ],
+   "z": 2,
+   "recolor": true,
+   "tags": [
+    "bird",
+    "peacock"
+   ],
+   "sockets": {
+    "head": [
+     {
+      "at": [
+       176,
+       222
+      ]
+     }
+    ],
+    "wings": [
+     {
+      "at": [
+       182,
+       480
+      ],
+      "pose": {
+       "flying": {
+        "angle": -45,
+        "scale": 1.1
+       }
+      }
+     },
+     {
+      "at": [
+       199,
+       466
+      ],
+      "z": 1.5,
+      "shade": 0.7,
+      "angle": -8,
+      "pose": {
+       "flying": {
+        "angle": -70
+       }
+      }
+     },
+     {
+      "at": [
+       219,
+       494
+      ],
+      "z": 1.2,
+      "shade": 0.55,
+      "angle": 22,
+      "pose": {
+       "flying": {
+        "angle": -20,
+        "scale": 0.9
+       }
+      }
+     },
+     {
+      "at": [
+       168,
+       480
+      ],
+      "z": 1.1,
+      "shade": 0.5,
+      "angle": -35,
+      "pose": {
+       "flying": {
+        "angle": -95,
+        "scale": 0.9
+       }
+      }
+     }
+    ],
+    "tail": [
+     {
+      "at": [
+       395,
+       660
+      ],
+      "pose": {
+       "flying": {
+        "angle": -10
+       }
+      }
+     }
+    ],
+    "legs": [
+     {
+      "at": [
+       229,
+       733
+      ],
+      "must": [
+       "left"
+      ],
+      "pose": {
+       "flying": {
+        "angle": -35
+       }
+      }
+     },
+     {
+      "at": [
+       279,
+       735
+      ],
+      "must": [
+       "right"
+      ],
+      "pose": {
+       "flying": {
+        "angle": -50
+       }
+      }
+     },
+     {
+      "at": [
+       261,
+       736
+      ],
+      "must": [
+       "left"
+      ],
+      "shade": 0.8,
+      "pose": {
+       "flying": {
+        "angle": -60
+       }
+      }
+     },
+     {
+      "at": [
+       247,
+       738
+      ],
+      "must": [
+       "right"
+      ],
+      "shade": 0.8,
+      "pose": {
+       "flying": {
+        "angle": -20
+       }
+      }
+     }
+    ]
+   },
+   "defaults": {
+    "mouth": 0
+   }
+  },
+  "peacock_head": {
+   "file": "peacock/peacock_parts/peacock_head.png",
+   "slot": "head",
+   "plug": [
+    176,
+    222
+   ],
+   "z": 5,
+   "recolor": true,
+   "tags": [
+    "bird",
+    "peacock",
+    "realistic"
+   ],
+   "sockets": {
+    "eyes": [
+     {
+      "at": [
+       148,
+       180
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.5
+       }
+      }
+     },
+     {
+      "at": [
+       177,
+       165
+      ]
+     },
+     {
+      "at": [
+       119,
+       168
+      ]
+     },
+     {
+      "at": [
+       157,
+       202
+      ]
+     }
+    ],
+    "horns": [
+     {
+      "at": [
+       195,
+       155
+      ],
+      "pose": {
+       "solo": {
+        "scale": 1.5
+       }
+      }
+     },
+     {
+      "at": [
+       171,
+       153
+      ],
+      "angle": -28
+     },
+     {
+      "at": [
+       219,
+       160
+      ],
+      "angle": 28
+     },
+     {
+      "at": [
+       144,
+       164
+      ],
+      "angle": -55
+     }
+    ],
+    "ears": [
+     {
+      "at": [
+       186,
+       196
+      ],
+      "scale": 0.4
+     },
+     {
+      "at": [
+       200,
+       170
+      ],
+      "z": 4.9,
+      "shade": 0.8,
+      "angle": -15,
+      "scale": 0.4
+     }
+    ]
+   }
+  },
+  "peacock_crest": {
+   "file": "peacock/peacock_parts/peacock_crest.png",
+   "slot": "horns",
+   "plug": [
+    195,
+    155
+   ],
+   "z": 4.5,
+   "tags": [
+    "bird",
+    "peacock",
+    "crest"
+   ]
+  },
+  "peacock_eye": {
+   "file": "peacock/peacock_parts/peacock_eye.png",
+   "slot": "eyes",
+   "plug": [
+    148,
+    180
+   ],
+   "z": 7,
+   "tags": [
+    "bird",
+    "peacock"
+   ]
+  },
+  "peacock_wing": {
+   "file": "peacock/peacock_parts/peacock_wing.png",
+   "slot": "wings",
+   "plug": [
+    182,
+    480
+   ],
+   "z": 4,
+   "recolor": true,
+   "tags": [
+    "bird",
+    "peacock",
+    "feathered"
+   ]
+  },
+  "peacock_tail": {
+   "file": "peacock/peacock_parts/peacock_tail.png",
+   "slot": "tail",
+   "plug": [
+    395,
+    660
+   ],
+   "z": 0,
+   "recolor": true,
+   "tags": [
+    "bird",
+    "peacock",
+    "feathered"
+   ]
+  },
+  "peacock_leg_left": {
+   "file": "peacock/peacock_parts/peacock_leg_left.png",
+   "slot": "legs",
+   "plug": [
+    229,
+    733
+   ],
+   "z": 1,
+   "tags": [
+    "bird",
+    "peacock",
+    "left"
+   ]
+  },
+  "peacock_leg_right": {
+   "file": "peacock/peacock_parts/peacock_leg_right.png",
+   "slot": "legs",
+   "plug": [
+    279,
+    735
+   ],
+   "z": 1.5,
+   "tags": [
+    "bird",
+    "peacock",
+    "right"
+   ]
+  }
+ }
+}
