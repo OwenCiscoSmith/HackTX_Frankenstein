@@ -1,0 +1,4399 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "LLM-readable animal anatomy classification and planned cutout catalog for Frankenstein creature assembly.",
+  "source": {
+    "repository": "https://github.com/OwenCiscoSmith/HackTX_Frankenstein",
+    "commit": "7e52f6ed0348a6d8312b78d5dd99b600e0dcca9a",
+    "folder": "Animal_PNGS",
+    "reference_model": "structure.py: PartsCatalog / Part / Socket"
+  },
+  "status": "classification_complete_cutouts_and_attachment_coordinates_pending",
+  "conventions": {
+    "data_structure": "animals is a dictionary keyed by source folder; each animal has body_parts dictionaries containing arrays of part IDs. parts is a dictionary keyed by unique part ID.",
+    "laterality": "left and right refer to the animal, not the viewer. Both anatomical sides are listed even when hidden in the side-view source.",
+    "counts": "Anatomical counts are classification expectations, not counts of independently visible or extracted image assets.",
+    "colors": "Body color tags are approximate visual descriptions of the source artwork; eye iris colors are unverified and therefore null.",
+    "not_applicable": "An empty category array means that category has no applicable external part; category_notes explains alternatives.",
+    "paths": "source_image paths exist in the pinned repository. All parts[*].file paths are PROPOSED relative output paths and do not yet exist.",
+    "coordinates": "plug is null and sockets is empty until image segmentation and measurement; null on a non-root part means unmeasured, not unattached.",
+    "renderer_compatibility": "Only the object {parts: <this document.parts>} matches structure.py PartsCatalog. The full document is a classification manifest and must not be passed directly to its extra=forbid model.",
+    "render_readiness": "Do not render planned files or treat whole-animal source PNGs as cutouts. Segment parts, measure plugs/sockets and confirm visibility first.",
+    "layer": "Values are suggested draw orders only; hidden limbs and camera orientation require adjustment after segmentation."
+  },
+  "llm_instructions": [
+    "Use only animal IDs and part IDs present in this catalog.",
+    "Resolve singular terms eye and ear to eyes and ears; body and torso to body; front legs and forelegs to front_legs; back legs and hind legs to back_legs.",
+    "Do not call quadruped forefeet hands. Monkey hands are separate from its arms and hind legs.",
+    "Keep fins, flippers and wings in their own categories; do not relabel them as legs or hands.",
+    "Do not confuse peacock tail eyespots with anatomical eyes.",
+    "Do not invent iris colors, cutout coordinates, visibility, or extracted file availability.",
+    "For animal-specific colors, read part_attributes; color_options are editable design choices, not verified natural colors.",
+    "Use parts tags for filtering. Use part_attributes to distinguish laterality, limb position, anatomy, parent, and source.",
+    "Lips describes a mouth-region cutout where applicable; it is not always a separately extractable structure."
+  ],
+  "vocabulary": {
+    "requested_categories": [
+      "legs",
+      "body",
+      "hands",
+      "head",
+      "eyes",
+      "nose",
+      "lips",
+      "ears"
+    ],
+    "eye_color_options": [
+      "brown",
+      "amber",
+      "hazel",
+      "green",
+      "blue",
+      "gray",
+      "black"
+    ],
+    "slot_mapping": {
+      "body": "torso",
+      "head": "head",
+      "legs": "legs",
+      "hands": "hands",
+      "eyes": "eyes",
+      "nose": "nose",
+      "lips": "mouth",
+      "ears": "ears",
+      "front_legs": "legs",
+      "back_legs": "legs"
+    }
+  },
+  "animals": {
+    "alligator": {
+      "display_name": "alligator",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "animal_class": "reptile",
+      "body_covering": "scales",
+      "approximate_body_colors": [
+        "dark_gray",
+        "olive"
+      ],
+      "body_parts": {
+        "legs": [
+          "alligator_front_left_leg",
+          "alligator_front_right_leg",
+          "alligator_back_left_leg",
+          "alligator_back_right_leg"
+        ],
+        "body": [
+          "alligator_body"
+        ],
+        "hands": [],
+        "head": [
+          "alligator_head"
+        ],
+        "eyes": [
+          "alligator_left_eye",
+          "alligator_right_eye"
+        ],
+        "nose": [
+          "alligator_nose"
+        ],
+        "lips": [],
+        "ears": [],
+        "mouth": [
+          "alligator_mouth"
+        ],
+        "tail": [
+          "alligator_tail"
+        ]
+      },
+      "classifications": {
+        "front_legs": [
+          "alligator_front_left_leg",
+          "alligator_front_right_leg"
+        ],
+        "back_legs": [
+          "alligator_back_left_leg",
+          "alligator_back_right_leg"
+        ],
+        "hind_legs": [
+          "alligator_back_left_leg",
+          "alligator_back_right_leg"
+        ],
+        "left_parts": [
+          "alligator_left_eye",
+          "alligator_front_left_leg",
+          "alligator_back_left_leg"
+        ],
+        "right_parts": [
+          "alligator_right_eye",
+          "alligator_front_right_leg",
+          "alligator_back_right_leg"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "ears": "No external pinnae. Hearing anatomy is internal; no separate ear cutout is defined.",
+        "lips": "No separate mammalian-style lip asset; use mouth for the jaw and mouth region."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "bear": {
+      "display_name": "bear",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "animal_class": "mammal",
+      "body_covering": "fur",
+      "approximate_body_colors": [
+        "brown"
+      ],
+      "body_parts": {
+        "legs": [
+          "bear_front_left_leg",
+          "bear_front_right_leg",
+          "bear_back_left_leg",
+          "bear_back_right_leg"
+        ],
+        "body": [
+          "bear_body"
+        ],
+        "hands": [],
+        "head": [
+          "bear_head"
+        ],
+        "eyes": [
+          "bear_left_eye",
+          "bear_right_eye"
+        ],
+        "nose": [
+          "bear_nose"
+        ],
+        "lips": [
+          "bear_lips"
+        ],
+        "ears": [
+          "bear_left_ear",
+          "bear_right_ear"
+        ],
+        "tail": [
+          "bear_tail"
+        ]
+      },
+      "classifications": {
+        "front_legs": [
+          "bear_front_left_leg",
+          "bear_front_right_leg"
+        ],
+        "back_legs": [
+          "bear_back_left_leg",
+          "bear_back_right_leg"
+        ],
+        "hind_legs": [
+          "bear_back_left_leg",
+          "bear_back_right_leg"
+        ],
+        "left_parts": [
+          "bear_left_eye",
+          "bear_front_left_leg",
+          "bear_back_left_leg",
+          "bear_left_ear"
+        ],
+        "right_parts": [
+          "bear_right_eye",
+          "bear_front_right_leg",
+          "bear_back_right_leg",
+          "bear_right_ear"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "dog": {
+      "display_name": "dog",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "animal_class": "mammal",
+      "body_covering": "fur",
+      "approximate_body_colors": [
+        "black",
+        "tan"
+      ],
+      "body_parts": {
+        "legs": [
+          "dog_front_left_leg",
+          "dog_front_right_leg",
+          "dog_back_left_leg",
+          "dog_back_right_leg"
+        ],
+        "body": [
+          "dog_body"
+        ],
+        "hands": [],
+        "head": [
+          "dog_head"
+        ],
+        "eyes": [
+          "dog_left_eye",
+          "dog_right_eye"
+        ],
+        "nose": [
+          "dog_nose"
+        ],
+        "lips": [
+          "dog_lips"
+        ],
+        "ears": [
+          "dog_left_ear",
+          "dog_right_ear"
+        ],
+        "tail": [
+          "dog_tail"
+        ]
+      },
+      "classifications": {
+        "front_legs": [
+          "dog_front_left_leg",
+          "dog_front_right_leg"
+        ],
+        "back_legs": [
+          "dog_back_left_leg",
+          "dog_back_right_leg"
+        ],
+        "hind_legs": [
+          "dog_back_left_leg",
+          "dog_back_right_leg"
+        ],
+        "left_parts": [
+          "dog_left_eye",
+          "dog_front_left_leg",
+          "dog_back_left_leg",
+          "dog_left_ear"
+        ],
+        "right_parts": [
+          "dog_right_eye",
+          "dog_front_right_leg",
+          "dog_back_right_leg",
+          "dog_right_ear"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "elephant": {
+      "display_name": "elephant",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "animal_class": "mammal",
+      "body_covering": "skin",
+      "approximate_body_colors": [
+        "gray"
+      ],
+      "body_parts": {
+        "legs": [
+          "elephant_front_left_leg",
+          "elephant_front_right_leg",
+          "elephant_back_left_leg",
+          "elephant_back_right_leg"
+        ],
+        "body": [
+          "elephant_body"
+        ],
+        "hands": [],
+        "head": [
+          "elephant_head"
+        ],
+        "eyes": [
+          "elephant_left_eye",
+          "elephant_right_eye"
+        ],
+        "nose": [
+          "elephant_trunk"
+        ],
+        "lips": [
+          "elephant_lips"
+        ],
+        "ears": [
+          "elephant_left_ear",
+          "elephant_right_ear"
+        ],
+        "trunk": [
+          "elephant_trunk"
+        ],
+        "tail": [
+          "elephant_tail"
+        ],
+        "tusks": [
+          "elephant_left_tusk",
+          "elephant_right_tusk"
+        ]
+      },
+      "classifications": {
+        "front_legs": [
+          "elephant_front_left_leg",
+          "elephant_front_right_leg"
+        ],
+        "back_legs": [
+          "elephant_back_left_leg",
+          "elephant_back_right_leg"
+        ],
+        "hind_legs": [
+          "elephant_back_left_leg",
+          "elephant_back_right_leg"
+        ],
+        "left_parts": [
+          "elephant_left_eye",
+          "elephant_front_left_leg",
+          "elephant_back_left_leg",
+          "elephant_left_ear",
+          "elephant_left_tusk"
+        ],
+        "right_parts": [
+          "elephant_right_eye",
+          "elephant_front_right_leg",
+          "elephant_back_right_leg",
+          "elephant_right_ear",
+          "elephant_right_tusk"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "nose": "The trunk represents the nose; the same part ID is reused rather than duplicated.",
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "fish": {
+      "display_name": "fish",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "animal_class": "fish",
+      "body_covering": "scales",
+      "approximate_body_colors": [
+        "olive",
+        "silver"
+      ],
+      "body_parts": {
+        "legs": [],
+        "body": [
+          "fish_body"
+        ],
+        "hands": [],
+        "head": [
+          "fish_head"
+        ],
+        "eyes": [
+          "fish_left_eye",
+          "fish_right_eye"
+        ],
+        "nose": [
+          "fish_nares"
+        ],
+        "lips": [
+          "fish_lips"
+        ],
+        "ears": [],
+        "fins": [
+          "fish_dorsal_fin",
+          "fish_anal_fin",
+          "fish_left_pectoral_fin",
+          "fish_right_pectoral_fin",
+          "fish_left_pelvic_fin",
+          "fish_right_pelvic_fin"
+        ],
+        "tail": [
+          "fish_tail"
+        ],
+        "gills": [
+          "fish_left_gill_cover",
+          "fish_right_gill_cover"
+        ]
+      },
+      "classifications": {
+        "front_legs": [],
+        "back_legs": [],
+        "hind_legs": [],
+        "left_parts": [
+          "fish_left_eye",
+          "fish_left_pectoral_fin",
+          "fish_left_pelvic_fin",
+          "fish_left_gill_cover"
+        ],
+        "right_parts": [
+          "fish_right_eye",
+          "fish_right_pectoral_fin",
+          "fish_right_pelvic_fin",
+          "fish_right_gill_cover"
+        ]
+      },
+      "category_notes": {
+        "legs": "No external legs; locomotion uses fins or flippers and tail.",
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "ears": "No external pinnae. Hearing anatomy is internal; no separate ear cutout is defined.",
+        "nose": "One grouped nasal-opening region, not a projecting mammalian nose; source visibility needs verification.",
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "lion": {
+      "display_name": "lion",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "animal_class": "mammal",
+      "body_covering": "fur",
+      "approximate_body_colors": [
+        "tan",
+        "brown"
+      ],
+      "body_parts": {
+        "legs": [
+          "lion_front_left_leg",
+          "lion_front_right_leg",
+          "lion_back_left_leg",
+          "lion_back_right_leg"
+        ],
+        "body": [
+          "lion_body"
+        ],
+        "hands": [],
+        "head": [
+          "lion_head"
+        ],
+        "eyes": [
+          "lion_left_eye",
+          "lion_right_eye"
+        ],
+        "nose": [
+          "lion_nose"
+        ],
+        "lips": [
+          "lion_lips"
+        ],
+        "ears": [
+          "lion_left_ear",
+          "lion_right_ear"
+        ],
+        "tail": [
+          "lion_tail"
+        ],
+        "mane": [
+          "lion_mane"
+        ]
+      },
+      "classifications": {
+        "front_legs": [
+          "lion_front_left_leg",
+          "lion_front_right_leg"
+        ],
+        "back_legs": [
+          "lion_back_left_leg",
+          "lion_back_right_leg"
+        ],
+        "hind_legs": [
+          "lion_back_left_leg",
+          "lion_back_right_leg"
+        ],
+        "left_parts": [
+          "lion_left_eye",
+          "lion_front_left_leg",
+          "lion_back_left_leg",
+          "lion_left_ear"
+        ],
+        "right_parts": [
+          "lion_right_eye",
+          "lion_front_right_leg",
+          "lion_back_right_leg",
+          "lion_right_ear"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "lizard": {
+      "display_name": "lizard",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "animal_class": "reptile",
+      "body_covering": "scales",
+      "approximate_body_colors": [
+        "green",
+        "brown"
+      ],
+      "body_parts": {
+        "legs": [
+          "lizard_front_left_leg",
+          "lizard_front_right_leg",
+          "lizard_back_left_leg",
+          "lizard_back_right_leg"
+        ],
+        "body": [
+          "lizard_body"
+        ],
+        "hands": [],
+        "head": [
+          "lizard_head"
+        ],
+        "eyes": [
+          "lizard_left_eye",
+          "lizard_right_eye"
+        ],
+        "nose": [
+          "lizard_nose"
+        ],
+        "lips": [],
+        "ears": [],
+        "mouth": [
+          "lizard_mouth"
+        ],
+        "tail": [
+          "lizard_tail"
+        ]
+      },
+      "classifications": {
+        "front_legs": [
+          "lizard_front_left_leg",
+          "lizard_front_right_leg"
+        ],
+        "back_legs": [
+          "lizard_back_left_leg",
+          "lizard_back_right_leg"
+        ],
+        "hind_legs": [
+          "lizard_back_left_leg",
+          "lizard_back_right_leg"
+        ],
+        "left_parts": [
+          "lizard_left_eye",
+          "lizard_front_left_leg",
+          "lizard_back_left_leg"
+        ],
+        "right_parts": [
+          "lizard_right_eye",
+          "lizard_front_right_leg",
+          "lizard_back_right_leg"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "ears": "No external pinnae. Ear openings are small or concealed; no separate ear cutout is defined.",
+        "lips": "No separate mammalian-style lip asset; use mouth for the jaw and mouth region."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "monkey": {
+      "display_name": "monkey",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "animal_class": "mammal",
+      "body_covering": "fur",
+      "approximate_body_colors": [
+        "brown",
+        "cream"
+      ],
+      "body_parts": {
+        "legs": [
+          "monkey_back_left_leg",
+          "monkey_back_right_leg"
+        ],
+        "body": [
+          "monkey_body"
+        ],
+        "hands": [
+          "monkey_left_hand",
+          "monkey_right_hand"
+        ],
+        "head": [
+          "monkey_head"
+        ],
+        "eyes": [
+          "monkey_left_eye",
+          "monkey_right_eye"
+        ],
+        "nose": [
+          "monkey_nose"
+        ],
+        "lips": [
+          "monkey_lips"
+        ],
+        "ears": [
+          "monkey_left_ear",
+          "monkey_right_ear"
+        ],
+        "arms": [
+          "monkey_left_arm",
+          "monkey_right_arm"
+        ],
+        "tail": [
+          "monkey_tail"
+        ]
+      },
+      "classifications": {
+        "front_legs": [],
+        "back_legs": [
+          "monkey_back_left_leg",
+          "monkey_back_right_leg"
+        ],
+        "hind_legs": [
+          "monkey_back_left_leg",
+          "monkey_back_right_leg"
+        ],
+        "left_parts": [
+          "monkey_left_eye",
+          "monkey_back_left_leg",
+          "monkey_left_arm",
+          "monkey_left_hand",
+          "monkey_left_ear"
+        ],
+        "right_parts": [
+          "monkey_right_eye",
+          "monkey_back_right_leg",
+          "monkey_right_arm",
+          "monkey_right_hand",
+          "monkey_right_ear"
+        ]
+      },
+      "category_notes": {
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "narwhol": {
+      "display_name": "narwhal",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "animal_class": "mammal",
+      "body_covering": "skin",
+      "approximate_body_colors": [
+        "gray",
+        "white"
+      ],
+      "body_parts": {
+        "legs": [],
+        "body": [
+          "narwhol_body"
+        ],
+        "hands": [],
+        "head": [
+          "narwhol_head"
+        ],
+        "eyes": [
+          "narwhol_left_eye",
+          "narwhol_right_eye"
+        ],
+        "nose": [],
+        "lips": [
+          "narwhol_lips"
+        ],
+        "ears": [],
+        "flippers": [
+          "narwhol_left_flipper",
+          "narwhol_right_flipper"
+        ],
+        "tail": [
+          "narwhol_tail"
+        ],
+        "tusk": [
+          "narwhol_tusk"
+        ],
+        "blowhole": [
+          "narwhol_blowhole"
+        ]
+      },
+      "classifications": {
+        "front_legs": [],
+        "back_legs": [],
+        "hind_legs": [],
+        "left_parts": [
+          "narwhol_left_eye",
+          "narwhol_left_flipper"
+        ],
+        "right_parts": [
+          "narwhol_right_eye",
+          "narwhol_right_flipper"
+        ]
+      },
+      "category_notes": {
+        "legs": "No external legs; locomotion uses fins or flippers and tail.",
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "ears": "No external pinnae. Hearing anatomy is internal; no separate ear cutout is defined.",
+        "nose": "Nasal opening is the blowhole on the top of the head; classified under blowhole, not an external nose.",
+        "lips": "Grouped mouth/lip region; separate upper and lower lip cutouts require close inspection."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    },
+    "peacock": {
+      "display_name": "peacock",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "animal_class": "bird",
+      "body_covering": "feathers",
+      "approximate_body_colors": [
+        "blue",
+        "green",
+        "brown"
+      ],
+      "body_parts": {
+        "legs": [
+          "peacock_back_left_leg",
+          "peacock_back_right_leg"
+        ],
+        "body": [
+          "peacock_body"
+        ],
+        "hands": [],
+        "head": [
+          "peacock_head"
+        ],
+        "eyes": [
+          "peacock_left_eye",
+          "peacock_right_eye"
+        ],
+        "nose": [
+          "peacock_nares"
+        ],
+        "lips": [],
+        "ears": [],
+        "beak": [
+          "peacock_beak"
+        ],
+        "wings": [
+          "peacock_left_wing",
+          "peacock_right_wing"
+        ],
+        "tail": [
+          "peacock_tail"
+        ],
+        "crest": [
+          "peacock_crest"
+        ]
+      },
+      "classifications": {
+        "front_legs": [],
+        "back_legs": [
+          "peacock_back_left_leg",
+          "peacock_back_right_leg"
+        ],
+        "hind_legs": [
+          "peacock_back_left_leg",
+          "peacock_back_right_leg"
+        ],
+        "left_parts": [
+          "peacock_left_eye",
+          "peacock_back_left_leg",
+          "peacock_left_wing"
+        ],
+        "right_parts": [
+          "peacock_right_eye",
+          "peacock_back_right_leg",
+          "peacock_right_wing"
+        ]
+      },
+      "category_notes": {
+        "hands": "No separate hands in this classification; feet remain part of legs, or appendages use animal-specific categories.",
+        "ears": "No external pinnae. Ear openings are small or concealed; no separate ear cutout is defined.",
+        "nose": "One grouped nasal-opening region, not a projecting mammalian nose; source visibility needs verification.",
+        "lips": "No fleshy lips; use the beak category.",
+        "tail": "One grouped decorative tail/train region. Tail eyespots are feather markings, not eye parts."
+      },
+      "eye_attributes": {
+        "anatomical_count": 2,
+        "iris_color": null,
+        "color_status": "unverified",
+        "color_options": [
+          "brown",
+          "amber",
+          "hazel",
+          "green",
+          "blue",
+          "gray",
+          "black"
+        ],
+        "pupil_shape": null
+      }
+    }
+  },
+  "parts": {
+    "alligator_body": {
+      "file": "Animal_PNGS/alligator/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "alligator",
+        "body",
+        "reptile",
+        "scales",
+        "torso",
+        "dark_gray",
+        "olive"
+      ],
+      "sockets": {}
+    },
+    "alligator_head": {
+      "file": "Animal_PNGS/alligator/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "head",
+        "reptile",
+        "scales"
+      ],
+      "sockets": {}
+    },
+    "alligator_left_eye": {
+      "file": "Animal_PNGS/alligator/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "alligator",
+        "eyes",
+        "reptile",
+        "scales",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "alligator_right_eye": {
+      "file": "Animal_PNGS/alligator/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "alligator",
+        "eyes",
+        "reptile",
+        "scales",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "alligator_front_left_leg": {
+      "file": "Animal_PNGS/alligator/parts/front_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "legs",
+        "reptile",
+        "scales",
+        "left",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "alligator_front_right_leg": {
+      "file": "Animal_PNGS/alligator/parts/front_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "legs",
+        "reptile",
+        "scales",
+        "right",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "alligator_back_left_leg": {
+      "file": "Animal_PNGS/alligator/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "legs",
+        "reptile",
+        "scales",
+        "left",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "alligator_back_right_leg": {
+      "file": "Animal_PNGS/alligator/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "legs",
+        "reptile",
+        "scales",
+        "right",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "alligator_nose": {
+      "file": "Animal_PNGS/alligator/parts/nose.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "nose",
+        "reptile",
+        "scales",
+        "nose_region"
+      ],
+      "sockets": {}
+    },
+    "alligator_mouth": {
+      "file": "Animal_PNGS/alligator/parts/mouth.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "mouth",
+        "reptile",
+        "scales",
+        "jaw_and_mouth_region"
+      ],
+      "sockets": {}
+    },
+    "alligator_tail": {
+      "file": "Animal_PNGS/alligator/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "alligator",
+        "tail",
+        "reptile",
+        "scales"
+      ],
+      "sockets": {}
+    },
+    "bear_body": {
+      "file": "Animal_PNGS/bear/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "bear",
+        "body",
+        "mammal",
+        "fur",
+        "torso",
+        "brown"
+      ],
+      "sockets": {}
+    },
+    "bear_head": {
+      "file": "Animal_PNGS/bear/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "head",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "bear_left_eye": {
+      "file": "Animal_PNGS/bear/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "bear",
+        "eyes",
+        "mammal",
+        "fur",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "bear_right_eye": {
+      "file": "Animal_PNGS/bear/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "bear",
+        "eyes",
+        "mammal",
+        "fur",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "bear_front_left_leg": {
+      "file": "Animal_PNGS/bear/parts/front_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "bear_front_right_leg": {
+      "file": "Animal_PNGS/bear/parts/front_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "bear_back_left_leg": {
+      "file": "Animal_PNGS/bear/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "bear_back_right_leg": {
+      "file": "Animal_PNGS/bear/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "bear_left_ear": {
+      "file": "Animal_PNGS/bear/parts/left_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "ears",
+        "mammal",
+        "fur",
+        "left",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "bear_right_ear": {
+      "file": "Animal_PNGS/bear/parts/right_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "ears",
+        "mammal",
+        "fur",
+        "right",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "bear_nose": {
+      "file": "Animal_PNGS/bear/parts/nose.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "nose",
+        "mammal",
+        "fur",
+        "nose_region"
+      ],
+      "sockets": {}
+    },
+    "bear_lips": {
+      "file": "Animal_PNGS/bear/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "lips",
+        "mammal",
+        "fur",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "bear_tail": {
+      "file": "Animal_PNGS/bear/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "bear",
+        "tail",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "dog_body": {
+      "file": "Animal_PNGS/dog/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "dog",
+        "body",
+        "mammal",
+        "fur",
+        "torso",
+        "black",
+        "tan"
+      ],
+      "sockets": {}
+    },
+    "dog_head": {
+      "file": "Animal_PNGS/dog/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "head",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "dog_left_eye": {
+      "file": "Animal_PNGS/dog/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "dog",
+        "eyes",
+        "mammal",
+        "fur",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "dog_right_eye": {
+      "file": "Animal_PNGS/dog/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "dog",
+        "eyes",
+        "mammal",
+        "fur",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "dog_front_left_leg": {
+      "file": "Animal_PNGS/dog/parts/front_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "dog_front_right_leg": {
+      "file": "Animal_PNGS/dog/parts/front_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "dog_back_left_leg": {
+      "file": "Animal_PNGS/dog/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "dog_back_right_leg": {
+      "file": "Animal_PNGS/dog/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "dog_left_ear": {
+      "file": "Animal_PNGS/dog/parts/left_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "ears",
+        "mammal",
+        "fur",
+        "left",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "dog_right_ear": {
+      "file": "Animal_PNGS/dog/parts/right_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "ears",
+        "mammal",
+        "fur",
+        "right",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "dog_nose": {
+      "file": "Animal_PNGS/dog/parts/nose.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "nose",
+        "mammal",
+        "fur",
+        "nose_region"
+      ],
+      "sockets": {}
+    },
+    "dog_lips": {
+      "file": "Animal_PNGS/dog/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "lips",
+        "mammal",
+        "fur",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "dog_tail": {
+      "file": "Animal_PNGS/dog/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "dog",
+        "tail",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "elephant_body": {
+      "file": "Animal_PNGS/elephant/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "elephant",
+        "body",
+        "mammal",
+        "skin",
+        "torso",
+        "gray"
+      ],
+      "sockets": {}
+    },
+    "elephant_head": {
+      "file": "Animal_PNGS/elephant/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "head",
+        "mammal",
+        "skin"
+      ],
+      "sockets": {}
+    },
+    "elephant_left_eye": {
+      "file": "Animal_PNGS/elephant/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "elephant",
+        "eyes",
+        "mammal",
+        "skin",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "elephant_right_eye": {
+      "file": "Animal_PNGS/elephant/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "elephant",
+        "eyes",
+        "mammal",
+        "skin",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "elephant_front_left_leg": {
+      "file": "Animal_PNGS/elephant/parts/front_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "legs",
+        "mammal",
+        "skin",
+        "left",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "elephant_front_right_leg": {
+      "file": "Animal_PNGS/elephant/parts/front_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "legs",
+        "mammal",
+        "skin",
+        "right",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "elephant_back_left_leg": {
+      "file": "Animal_PNGS/elephant/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "legs",
+        "mammal",
+        "skin",
+        "left",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "elephant_back_right_leg": {
+      "file": "Animal_PNGS/elephant/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "legs",
+        "mammal",
+        "skin",
+        "right",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "elephant_left_ear": {
+      "file": "Animal_PNGS/elephant/parts/left_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "ears",
+        "mammal",
+        "skin",
+        "left",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "elephant_right_ear": {
+      "file": "Animal_PNGS/elephant/parts/right_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "ears",
+        "mammal",
+        "skin",
+        "right",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "elephant_trunk": {
+      "file": "Animal_PNGS/elephant/parts/trunk.png",
+      "slot": "trunk",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "trunk",
+        "mammal",
+        "skin",
+        "elongated_nose_and_upper_lip"
+      ],
+      "sockets": {}
+    },
+    "elephant_lips": {
+      "file": "Animal_PNGS/elephant/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "lips",
+        "mammal",
+        "skin",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "elephant_tail": {
+      "file": "Animal_PNGS/elephant/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "tail",
+        "mammal",
+        "skin"
+      ],
+      "sockets": {}
+    },
+    "elephant_left_tusk": {
+      "file": "Animal_PNGS/elephant/parts/left_tusk.png",
+      "slot": "tusks",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "tusks",
+        "mammal",
+        "skin",
+        "left",
+        "tusk"
+      ],
+      "sockets": {}
+    },
+    "elephant_right_tusk": {
+      "file": "Animal_PNGS/elephant/parts/right_tusk.png",
+      "slot": "tusks",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "elephant",
+        "tusks",
+        "mammal",
+        "skin",
+        "right",
+        "tusk"
+      ],
+      "sockets": {}
+    },
+    "fish_body": {
+      "file": "Animal_PNGS/fish/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "body",
+        "scales",
+        "torso",
+        "olive",
+        "silver"
+      ],
+      "sockets": {}
+    },
+    "fish_head": {
+      "file": "Animal_PNGS/fish/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "head",
+        "scales"
+      ],
+      "sockets": {}
+    },
+    "fish_left_eye": {
+      "file": "Animal_PNGS/fish/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "eyes",
+        "scales",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "fish_right_eye": {
+      "file": "Animal_PNGS/fish/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "fish",
+        "eyes",
+        "scales",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "fish_nares": {
+      "file": "Animal_PNGS/fish/parts/nares.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "nose",
+        "scales",
+        "paired_nasal_openings_region"
+      ],
+      "sockets": {}
+    },
+    "fish_lips": {
+      "file": "Animal_PNGS/fish/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "lips",
+        "scales",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "fish_dorsal_fin": {
+      "file": "Animal_PNGS/fish/parts/dorsal_fin.png",
+      "slot": "fins",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "fins",
+        "scales",
+        "dorsal_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_anal_fin": {
+      "file": "Animal_PNGS/fish/parts/anal_fin.png",
+      "slot": "fins",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "fins",
+        "scales",
+        "anal_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_left_pectoral_fin": {
+      "file": "Animal_PNGS/fish/parts/left_pectoral_fin.png",
+      "slot": "fins",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "fins",
+        "scales",
+        "left",
+        "pectoral_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_right_pectoral_fin": {
+      "file": "Animal_PNGS/fish/parts/right_pectoral_fin.png",
+      "slot": "fins",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "fins",
+        "scales",
+        "right",
+        "pectoral_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_left_pelvic_fin": {
+      "file": "Animal_PNGS/fish/parts/left_pelvic_fin.png",
+      "slot": "fins",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "fins",
+        "scales",
+        "left",
+        "pelvic_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_right_pelvic_fin": {
+      "file": "Animal_PNGS/fish/parts/right_pelvic_fin.png",
+      "slot": "fins",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "fins",
+        "scales",
+        "right",
+        "pelvic_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_tail": {
+      "file": "Animal_PNGS/fish/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "tail",
+        "scales",
+        "caudal_fin"
+      ],
+      "sockets": {}
+    },
+    "fish_left_gill_cover": {
+      "file": "Animal_PNGS/fish/parts/left_gill_cover.png",
+      "slot": "gills",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "gills",
+        "scales",
+        "left",
+        "operculum"
+      ],
+      "sockets": {}
+    },
+    "fish_right_gill_cover": {
+      "file": "Animal_PNGS/fish/parts/right_gill_cover.png",
+      "slot": "gills",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "fish",
+        "gills",
+        "scales",
+        "right",
+        "operculum"
+      ],
+      "sockets": {}
+    },
+    "lion_body": {
+      "file": "Animal_PNGS/lion/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "lion",
+        "body",
+        "mammal",
+        "fur",
+        "torso",
+        "tan",
+        "brown"
+      ],
+      "sockets": {}
+    },
+    "lion_head": {
+      "file": "Animal_PNGS/lion/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "head",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "lion_left_eye": {
+      "file": "Animal_PNGS/lion/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "lion",
+        "eyes",
+        "mammal",
+        "fur",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "lion_right_eye": {
+      "file": "Animal_PNGS/lion/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "lion",
+        "eyes",
+        "mammal",
+        "fur",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "lion_front_left_leg": {
+      "file": "Animal_PNGS/lion/parts/front_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lion_front_right_leg": {
+      "file": "Animal_PNGS/lion/parts/front_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lion_back_left_leg": {
+      "file": "Animal_PNGS/lion/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lion_back_right_leg": {
+      "file": "Animal_PNGS/lion/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lion_left_ear": {
+      "file": "Animal_PNGS/lion/parts/left_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "ears",
+        "mammal",
+        "fur",
+        "left",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "lion_right_ear": {
+      "file": "Animal_PNGS/lion/parts/right_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "ears",
+        "mammal",
+        "fur",
+        "right",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "lion_nose": {
+      "file": "Animal_PNGS/lion/parts/nose.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "nose",
+        "mammal",
+        "fur",
+        "nose_region"
+      ],
+      "sockets": {}
+    },
+    "lion_lips": {
+      "file": "Animal_PNGS/lion/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "lips",
+        "mammal",
+        "fur",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "lion_tail": {
+      "file": "Animal_PNGS/lion/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "tail",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "lion_mane": {
+      "file": "Animal_PNGS/lion/parts/mane.png",
+      "slot": "mane",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "lion",
+        "mane",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "lizard_body": {
+      "file": "Animal_PNGS/lizard/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "lizard",
+        "body",
+        "reptile",
+        "scales",
+        "torso",
+        "green",
+        "brown"
+      ],
+      "sockets": {}
+    },
+    "lizard_head": {
+      "file": "Animal_PNGS/lizard/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "head",
+        "reptile",
+        "scales"
+      ],
+      "sockets": {}
+    },
+    "lizard_left_eye": {
+      "file": "Animal_PNGS/lizard/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "lizard",
+        "eyes",
+        "reptile",
+        "scales",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "lizard_right_eye": {
+      "file": "Animal_PNGS/lizard/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "lizard",
+        "eyes",
+        "reptile",
+        "scales",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "lizard_front_left_leg": {
+      "file": "Animal_PNGS/lizard/parts/front_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "legs",
+        "reptile",
+        "scales",
+        "left",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lizard_front_right_leg": {
+      "file": "Animal_PNGS/lizard/parts/front_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "legs",
+        "reptile",
+        "scales",
+        "right",
+        "front",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lizard_back_left_leg": {
+      "file": "Animal_PNGS/lizard/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "legs",
+        "reptile",
+        "scales",
+        "left",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lizard_back_right_leg": {
+      "file": "Animal_PNGS/lizard/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "legs",
+        "reptile",
+        "scales",
+        "right",
+        "back",
+        "limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "lizard_nose": {
+      "file": "Animal_PNGS/lizard/parts/nose.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "nose",
+        "reptile",
+        "scales",
+        "nose_region"
+      ],
+      "sockets": {}
+    },
+    "lizard_mouth": {
+      "file": "Animal_PNGS/lizard/parts/mouth.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "mouth",
+        "reptile",
+        "scales",
+        "jaw_and_mouth_region"
+      ],
+      "sockets": {}
+    },
+    "lizard_tail": {
+      "file": "Animal_PNGS/lizard/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "lizard",
+        "tail",
+        "reptile",
+        "scales"
+      ],
+      "sockets": {}
+    },
+    "monkey_body": {
+      "file": "Animal_PNGS/monkey/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "monkey",
+        "body",
+        "mammal",
+        "fur",
+        "torso",
+        "brown",
+        "cream"
+      ],
+      "sockets": {}
+    },
+    "monkey_head": {
+      "file": "Animal_PNGS/monkey/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "head",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "monkey_left_eye": {
+      "file": "Animal_PNGS/monkey/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "monkey",
+        "eyes",
+        "mammal",
+        "fur",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "monkey_right_eye": {
+      "file": "Animal_PNGS/monkey/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "monkey",
+        "eyes",
+        "mammal",
+        "fur",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "monkey_back_left_leg": {
+      "file": "Animal_PNGS/monkey/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "legs",
+        "mammal",
+        "fur",
+        "left",
+        "back",
+        "hind_limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "monkey_back_right_leg": {
+      "file": "Animal_PNGS/monkey/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "legs",
+        "mammal",
+        "fur",
+        "right",
+        "back",
+        "hind_limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "monkey_left_arm": {
+      "file": "Animal_PNGS/monkey/parts/left_arm.png",
+      "slot": "arms",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "arms",
+        "mammal",
+        "fur",
+        "left",
+        "forelimb_without_hand"
+      ],
+      "sockets": {}
+    },
+    "monkey_left_hand": {
+      "file": "Animal_PNGS/monkey/parts/left_hand.png",
+      "slot": "hands",
+      "plug": null,
+      "layer": 25,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "hands",
+        "mammal",
+        "fur",
+        "left",
+        "primate_hand"
+      ],
+      "sockets": {}
+    },
+    "monkey_right_arm": {
+      "file": "Animal_PNGS/monkey/parts/right_arm.png",
+      "slot": "arms",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "arms",
+        "mammal",
+        "fur",
+        "right",
+        "forelimb_without_hand"
+      ],
+      "sockets": {}
+    },
+    "monkey_right_hand": {
+      "file": "Animal_PNGS/monkey/parts/right_hand.png",
+      "slot": "hands",
+      "plug": null,
+      "layer": 25,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "hands",
+        "mammal",
+        "fur",
+        "right",
+        "primate_hand"
+      ],
+      "sockets": {}
+    },
+    "monkey_left_ear": {
+      "file": "Animal_PNGS/monkey/parts/left_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "ears",
+        "mammal",
+        "fur",
+        "left",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "monkey_right_ear": {
+      "file": "Animal_PNGS/monkey/parts/right_ear.png",
+      "slot": "ears",
+      "plug": null,
+      "layer": 35,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "ears",
+        "mammal",
+        "fur",
+        "right",
+        "external_pinna"
+      ],
+      "sockets": {}
+    },
+    "monkey_nose": {
+      "file": "Animal_PNGS/monkey/parts/nose.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "nose",
+        "mammal",
+        "fur",
+        "nose_region"
+      ],
+      "sockets": {}
+    },
+    "monkey_lips": {
+      "file": "Animal_PNGS/monkey/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "lips",
+        "mammal",
+        "fur",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "monkey_tail": {
+      "file": "Animal_PNGS/monkey/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "monkey",
+        "tail",
+        "mammal",
+        "fur"
+      ],
+      "sockets": {}
+    },
+    "narwhol_body": {
+      "file": "Animal_PNGS/narwhol/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "narwhol",
+        "body",
+        "mammal",
+        "skin",
+        "torso",
+        "gray",
+        "white"
+      ],
+      "sockets": {}
+    },
+    "narwhol_head": {
+      "file": "Animal_PNGS/narwhol/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "head",
+        "mammal",
+        "skin"
+      ],
+      "sockets": {}
+    },
+    "narwhol_left_eye": {
+      "file": "Animal_PNGS/narwhol/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "narwhol",
+        "eyes",
+        "mammal",
+        "skin",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "narwhol_right_eye": {
+      "file": "Animal_PNGS/narwhol/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "narwhol",
+        "eyes",
+        "mammal",
+        "skin",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "narwhol_lips": {
+      "file": "Animal_PNGS/narwhol/parts/lips.png",
+      "slot": "mouth",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "lips",
+        "mammal",
+        "skin",
+        "mouth_and_lip_region"
+      ],
+      "sockets": {}
+    },
+    "narwhol_left_flipper": {
+      "file": "Animal_PNGS/narwhol/parts/left_flipper.png",
+      "slot": "flippers",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "flippers",
+        "mammal",
+        "skin",
+        "left",
+        "flipper"
+      ],
+      "sockets": {}
+    },
+    "narwhol_right_flipper": {
+      "file": "Animal_PNGS/narwhol/parts/right_flipper.png",
+      "slot": "flippers",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "flippers",
+        "mammal",
+        "skin",
+        "right",
+        "flipper"
+      ],
+      "sockets": {}
+    },
+    "narwhol_tail": {
+      "file": "Animal_PNGS/narwhol/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "tail",
+        "mammal",
+        "skin",
+        "tail_flukes"
+      ],
+      "sockets": {}
+    },
+    "narwhol_tusk": {
+      "file": "Animal_PNGS/narwhol/parts/tusk.png",
+      "slot": "tusk",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "tusk",
+        "mammal",
+        "skin"
+      ],
+      "sockets": {}
+    },
+    "narwhol_blowhole": {
+      "file": "Animal_PNGS/narwhol/parts/blowhole.png",
+      "slot": "blowhole",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "narwhol",
+        "blowhole",
+        "mammal",
+        "skin"
+      ],
+      "sockets": {}
+    },
+    "peacock_body": {
+      "file": "Animal_PNGS/peacock/parts/body.png",
+      "slot": "torso",
+      "plug": null,
+      "layer": 10,
+      "recolor": true,
+      "tags": [
+        "peacock",
+        "body",
+        "bird",
+        "feathers",
+        "torso",
+        "blue",
+        "green",
+        "brown"
+      ],
+      "sockets": {}
+    },
+    "peacock_head": {
+      "file": "Animal_PNGS/peacock/parts/head.png",
+      "slot": "head",
+      "plug": null,
+      "layer": 30,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "head",
+        "bird",
+        "feathers"
+      ],
+      "sockets": {}
+    },
+    "peacock_left_eye": {
+      "file": "Animal_PNGS/peacock/parts/left_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "peacock",
+        "eyes",
+        "bird",
+        "feathers",
+        "left",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "peacock_right_eye": {
+      "file": "Animal_PNGS/peacock/parts/right_eye.png",
+      "slot": "eyes",
+      "plug": null,
+      "layer": 50,
+      "recolor": true,
+      "tags": [
+        "peacock",
+        "eyes",
+        "bird",
+        "feathers",
+        "right",
+        "eye"
+      ],
+      "sockets": {}
+    },
+    "peacock_back_left_leg": {
+      "file": "Animal_PNGS/peacock/parts/back_left_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "legs",
+        "bird",
+        "feathers",
+        "left",
+        "back",
+        "hind_limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "peacock_back_right_leg": {
+      "file": "Animal_PNGS/peacock/parts/back_right_leg.png",
+      "slot": "legs",
+      "plug": null,
+      "layer": 15,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "legs",
+        "bird",
+        "feathers",
+        "right",
+        "back",
+        "hind_limb_with_foot"
+      ],
+      "sockets": {}
+    },
+    "peacock_nares": {
+      "file": "Animal_PNGS/peacock/parts/nares.png",
+      "slot": "nose",
+      "plug": null,
+      "layer": 50,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "nose",
+        "bird",
+        "feathers",
+        "paired_nasal_openings_region"
+      ],
+      "sockets": {}
+    },
+    "peacock_beak": {
+      "file": "Animal_PNGS/peacock/parts/beak.png",
+      "slot": "beak",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "beak",
+        "bird",
+        "feathers"
+      ],
+      "sockets": {}
+    },
+    "peacock_left_wing": {
+      "file": "Animal_PNGS/peacock/parts/left_wing.png",
+      "slot": "wings",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "wings",
+        "bird",
+        "feathers",
+        "left",
+        "wing"
+      ],
+      "sockets": {}
+    },
+    "peacock_right_wing": {
+      "file": "Animal_PNGS/peacock/parts/right_wing.png",
+      "slot": "wings",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "wings",
+        "bird",
+        "feathers",
+        "right",
+        "wing"
+      ],
+      "sockets": {}
+    },
+    "peacock_tail": {
+      "file": "Animal_PNGS/peacock/parts/tail.png",
+      "slot": "tail",
+      "plug": null,
+      "layer": 5,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "tail",
+        "bird",
+        "feathers",
+        "tail_train"
+      ],
+      "sockets": {}
+    },
+    "peacock_crest": {
+      "file": "Animal_PNGS/peacock/parts/crest.png",
+      "slot": "crest",
+      "plug": null,
+      "layer": 20,
+      "recolor": false,
+      "tags": [
+        "peacock",
+        "crest",
+        "bird",
+        "feathers"
+      ],
+      "sockets": {}
+    }
+  },
+  "part_attributes": {
+    "alligator_body": {
+      "animal_id": "alligator",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_head": {
+      "animal_id": "alligator",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "alligator_body",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_left_eye": {
+      "animal_id": "alligator",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "alligator_head",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "alligator_right_eye": {
+      "animal_id": "alligator",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "alligator_head",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "alligator_front_left_leg": {
+      "animal_id": "alligator",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "front",
+      "parent_part_id": "alligator_body",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_front_right_leg": {
+      "animal_id": "alligator",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "front",
+      "parent_part_id": "alligator_body",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_back_left_leg": {
+      "animal_id": "alligator",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "alligator_body",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_back_right_leg": {
+      "animal_id": "alligator",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "alligator_body",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_nose": {
+      "animal_id": "alligator",
+      "category": "nose",
+      "anatomical_type": "nose_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "alligator_head",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_mouth": {
+      "animal_id": "alligator",
+      "category": "mouth",
+      "anatomical_type": "jaw_and_mouth_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "alligator_head",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "alligator_tail": {
+      "animal_id": "alligator",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "alligator_body",
+      "source_image": "Animal_PNGS/alligator/alligator.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_body": {
+      "animal_id": "bear",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_head": {
+      "animal_id": "bear",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "bear_body",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_left_eye": {
+      "animal_id": "bear",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "bear_head",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "bear_right_eye": {
+      "animal_id": "bear",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "bear_head",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "bear_front_left_leg": {
+      "animal_id": "bear",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "front",
+      "parent_part_id": "bear_body",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_front_right_leg": {
+      "animal_id": "bear",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "front",
+      "parent_part_id": "bear_body",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_back_left_leg": {
+      "animal_id": "bear",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "bear_body",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_back_right_leg": {
+      "animal_id": "bear",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "bear_body",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_left_ear": {
+      "animal_id": "bear",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "bear_head",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_right_ear": {
+      "animal_id": "bear",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "bear_head",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_nose": {
+      "animal_id": "bear",
+      "category": "nose",
+      "anatomical_type": "nose_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "bear_head",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_lips": {
+      "animal_id": "bear",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "bear_head",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "bear_tail": {
+      "animal_id": "bear",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "bear_body",
+      "source_image": "Animal_PNGS/bear/bear.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_body": {
+      "animal_id": "dog",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_head": {
+      "animal_id": "dog",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "dog_body",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_left_eye": {
+      "animal_id": "dog",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "dog_head",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "dog_right_eye": {
+      "animal_id": "dog",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "dog_head",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "dog_front_left_leg": {
+      "animal_id": "dog",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "front",
+      "parent_part_id": "dog_body",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_front_right_leg": {
+      "animal_id": "dog",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "front",
+      "parent_part_id": "dog_body",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_back_left_leg": {
+      "animal_id": "dog",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "dog_body",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_back_right_leg": {
+      "animal_id": "dog",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "dog_body",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_left_ear": {
+      "animal_id": "dog",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "dog_head",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_right_ear": {
+      "animal_id": "dog",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "dog_head",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_nose": {
+      "animal_id": "dog",
+      "category": "nose",
+      "anatomical_type": "nose_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "dog_head",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_lips": {
+      "animal_id": "dog",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "dog_head",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "dog_tail": {
+      "animal_id": "dog",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "dog_body",
+      "source_image": "Animal_PNGS/dog/dog.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_body": {
+      "animal_id": "elephant",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_head": {
+      "animal_id": "elephant",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "elephant_body",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_left_eye": {
+      "animal_id": "elephant",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "elephant_right_eye": {
+      "animal_id": "elephant",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "elephant_front_left_leg": {
+      "animal_id": "elephant",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "front",
+      "parent_part_id": "elephant_body",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_front_right_leg": {
+      "animal_id": "elephant",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "front",
+      "parent_part_id": "elephant_body",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_back_left_leg": {
+      "animal_id": "elephant",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "elephant_body",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_back_right_leg": {
+      "animal_id": "elephant",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "elephant_body",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_left_ear": {
+      "animal_id": "elephant",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_right_ear": {
+      "animal_id": "elephant",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_trunk": {
+      "animal_id": "elephant",
+      "category": "trunk",
+      "anatomical_type": "elongated_nose_and_upper_lip",
+      "side": null,
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_lips": {
+      "animal_id": "elephant",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_tail": {
+      "animal_id": "elephant",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "elephant_body",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_left_tusk": {
+      "animal_id": "elephant",
+      "category": "tusks",
+      "anatomical_type": "tusk",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "elephant_right_tusk": {
+      "animal_id": "elephant",
+      "category": "tusks",
+      "anatomical_type": "tusk",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "elephant_head",
+      "source_image": "Animal_PNGS/elephant/elephant.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_body": {
+      "animal_id": "fish",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_head": {
+      "animal_id": "fish",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_left_eye": {
+      "animal_id": "fish",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "fish_head",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "fish_right_eye": {
+      "animal_id": "fish",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "fish_head",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "fish_nares": {
+      "animal_id": "fish",
+      "category": "nose",
+      "anatomical_type": "paired_nasal_openings_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "fish_head",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_lips": {
+      "animal_id": "fish",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "fish_head",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_dorsal_fin": {
+      "animal_id": "fish",
+      "category": "fins",
+      "anatomical_type": "dorsal_fin",
+      "side": null,
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_anal_fin": {
+      "animal_id": "fish",
+      "category": "fins",
+      "anatomical_type": "anal_fin",
+      "side": null,
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_left_pectoral_fin": {
+      "animal_id": "fish",
+      "category": "fins",
+      "anatomical_type": "pectoral_fin",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_right_pectoral_fin": {
+      "animal_id": "fish",
+      "category": "fins",
+      "anatomical_type": "pectoral_fin",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_left_pelvic_fin": {
+      "animal_id": "fish",
+      "category": "fins",
+      "anatomical_type": "pelvic_fin",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_right_pelvic_fin": {
+      "animal_id": "fish",
+      "category": "fins",
+      "anatomical_type": "pelvic_fin",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_tail": {
+      "animal_id": "fish",
+      "category": "tail",
+      "anatomical_type": "caudal_fin",
+      "side": null,
+      "position": null,
+      "parent_part_id": "fish_body",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_left_gill_cover": {
+      "animal_id": "fish",
+      "category": "gills",
+      "anatomical_type": "operculum",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "fish_head",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "fish_right_gill_cover": {
+      "animal_id": "fish",
+      "category": "gills",
+      "anatomical_type": "operculum",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "fish_head",
+      "source_image": "Animal_PNGS/fish/fish.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_body": {
+      "animal_id": "lion",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_head": {
+      "animal_id": "lion",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lion_body",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_left_eye": {
+      "animal_id": "lion",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "lion_right_eye": {
+      "animal_id": "lion",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "lion_front_left_leg": {
+      "animal_id": "lion",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "front",
+      "parent_part_id": "lion_body",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_front_right_leg": {
+      "animal_id": "lion",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "front",
+      "parent_part_id": "lion_body",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_back_left_leg": {
+      "animal_id": "lion",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "lion_body",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_back_right_leg": {
+      "animal_id": "lion",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "lion_body",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_left_ear": {
+      "animal_id": "lion",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_right_ear": {
+      "animal_id": "lion",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_nose": {
+      "animal_id": "lion",
+      "category": "nose",
+      "anatomical_type": "nose_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_lips": {
+      "animal_id": "lion",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_tail": {
+      "animal_id": "lion",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lion_body",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lion_mane": {
+      "animal_id": "lion",
+      "category": "mane",
+      "anatomical_type": "mane",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lion_head",
+      "source_image": "Animal_PNGS/lion/lion.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_body": {
+      "animal_id": "lizard",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_head": {
+      "animal_id": "lizard",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lizard_body",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_left_eye": {
+      "animal_id": "lizard",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "lizard_head",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "lizard_right_eye": {
+      "animal_id": "lizard",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "lizard_head",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "lizard_front_left_leg": {
+      "animal_id": "lizard",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "front",
+      "parent_part_id": "lizard_body",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_front_right_leg": {
+      "animal_id": "lizard",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "front",
+      "parent_part_id": "lizard_body",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_back_left_leg": {
+      "animal_id": "lizard",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "lizard_body",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_back_right_leg": {
+      "animal_id": "lizard",
+      "category": "legs",
+      "anatomical_type": "limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "lizard_body",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_nose": {
+      "animal_id": "lizard",
+      "category": "nose",
+      "anatomical_type": "nose_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lizard_head",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_mouth": {
+      "animal_id": "lizard",
+      "category": "mouth",
+      "anatomical_type": "jaw_and_mouth_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lizard_head",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "lizard_tail": {
+      "animal_id": "lizard",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "lizard_body",
+      "source_image": "Animal_PNGS/lizard/lizard.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_body": {
+      "animal_id": "monkey",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_head": {
+      "animal_id": "monkey",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "monkey_body",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_left_eye": {
+      "animal_id": "monkey",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "monkey_head",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "monkey_right_eye": {
+      "animal_id": "monkey",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "monkey_head",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "monkey_back_left_leg": {
+      "animal_id": "monkey",
+      "category": "legs",
+      "anatomical_type": "hind_limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "monkey_body",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_back_right_leg": {
+      "animal_id": "monkey",
+      "category": "legs",
+      "anatomical_type": "hind_limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "monkey_body",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_left_arm": {
+      "animal_id": "monkey",
+      "category": "arms",
+      "anatomical_type": "forelimb_without_hand",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "monkey_body",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_left_hand": {
+      "animal_id": "monkey",
+      "category": "hands",
+      "anatomical_type": "primate_hand",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "monkey_left_arm",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_right_arm": {
+      "animal_id": "monkey",
+      "category": "arms",
+      "anatomical_type": "forelimb_without_hand",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "monkey_body",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_right_hand": {
+      "animal_id": "monkey",
+      "category": "hands",
+      "anatomical_type": "primate_hand",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "monkey_right_arm",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_left_ear": {
+      "animal_id": "monkey",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "monkey_head",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_right_ear": {
+      "animal_id": "monkey",
+      "category": "ears",
+      "anatomical_type": "external_pinna",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "monkey_head",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_nose": {
+      "animal_id": "monkey",
+      "category": "nose",
+      "anatomical_type": "nose_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "monkey_head",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_lips": {
+      "animal_id": "monkey",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "monkey_head",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "monkey_tail": {
+      "animal_id": "monkey",
+      "category": "tail",
+      "anatomical_type": "tail",
+      "side": null,
+      "position": null,
+      "parent_part_id": "monkey_body",
+      "source_image": "Animal_PNGS/monkey/monkey.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_body": {
+      "animal_id": "narwhol",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_head": {
+      "animal_id": "narwhol",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "narwhol_body",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_left_eye": {
+      "animal_id": "narwhol",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "narwhol_head",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "narwhol_right_eye": {
+      "animal_id": "narwhol",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "narwhol_head",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "narwhol_lips": {
+      "animal_id": "narwhol",
+      "category": "lips",
+      "anatomical_type": "mouth_and_lip_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "narwhol_head",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_left_flipper": {
+      "animal_id": "narwhol",
+      "category": "flippers",
+      "anatomical_type": "flipper",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "narwhol_body",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_right_flipper": {
+      "animal_id": "narwhol",
+      "category": "flippers",
+      "anatomical_type": "flipper",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "narwhol_body",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_tail": {
+      "animal_id": "narwhol",
+      "category": "tail",
+      "anatomical_type": "tail_flukes",
+      "side": null,
+      "position": null,
+      "parent_part_id": "narwhol_body",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_tusk": {
+      "animal_id": "narwhol",
+      "category": "tusk",
+      "anatomical_type": "tusk",
+      "side": null,
+      "position": null,
+      "parent_part_id": "narwhol_head",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "narwhol_blowhole": {
+      "animal_id": "narwhol",
+      "category": "blowhole",
+      "anatomical_type": "blowhole",
+      "side": null,
+      "position": null,
+      "parent_part_id": "narwhol_head",
+      "source_image": "Animal_PNGS/narwhol/narwhol.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_body": {
+      "animal_id": "peacock",
+      "category": "body",
+      "anatomical_type": "torso",
+      "side": null,
+      "position": null,
+      "parent_part_id": null,
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_head": {
+      "animal_id": "peacock",
+      "category": "head",
+      "anatomical_type": "head",
+      "side": null,
+      "position": null,
+      "parent_part_id": "peacock_body",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_left_eye": {
+      "animal_id": "peacock",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "peacock_head",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "peacock_right_eye": {
+      "animal_id": "peacock",
+      "category": "eyes",
+      "anatomical_type": "eye",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "peacock_head",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified",
+      "iris_color": null
+    },
+    "peacock_back_left_leg": {
+      "animal_id": "peacock",
+      "category": "legs",
+      "anatomical_type": "hind_limb_with_foot",
+      "side": "left",
+      "position": "back",
+      "parent_part_id": "peacock_body",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_back_right_leg": {
+      "animal_id": "peacock",
+      "category": "legs",
+      "anatomical_type": "hind_limb_with_foot",
+      "side": "right",
+      "position": "back",
+      "parent_part_id": "peacock_body",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_nares": {
+      "animal_id": "peacock",
+      "category": "nose",
+      "anatomical_type": "paired_nasal_openings_region",
+      "side": null,
+      "position": null,
+      "parent_part_id": "peacock_head",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_beak": {
+      "animal_id": "peacock",
+      "category": "beak",
+      "anatomical_type": "beak",
+      "side": null,
+      "position": null,
+      "parent_part_id": "peacock_head",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_left_wing": {
+      "animal_id": "peacock",
+      "category": "wings",
+      "anatomical_type": "wing",
+      "side": "left",
+      "position": null,
+      "parent_part_id": "peacock_body",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_right_wing": {
+      "animal_id": "peacock",
+      "category": "wings",
+      "anatomical_type": "wing",
+      "side": "right",
+      "position": null,
+      "parent_part_id": "peacock_body",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_tail": {
+      "animal_id": "peacock",
+      "category": "tail",
+      "anatomical_type": "tail_train",
+      "side": null,
+      "position": null,
+      "parent_part_id": "peacock_body",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    },
+    "peacock_crest": {
+      "animal_id": "peacock",
+      "category": "crest",
+      "anatomical_type": "crest",
+      "side": null,
+      "position": null,
+      "parent_part_id": "peacock_head",
+      "source_image": "Animal_PNGS/peacock/peacock.png",
+      "asset_status": "planned_not_extracted",
+      "source_visibility": "not_individually_verified"
+    }
+  }
+}
